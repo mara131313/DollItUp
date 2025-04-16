@@ -1,0 +1,28 @@
+Etapa 1:
+
+1. linia 1
+2. liniile 4-9
+3. liniile 10-15
+4. liniile 22, 64, 318
+5. liniile 166-188
+6. liniile 24-62
+7. p: linia 78, ol: liniile 130-137
+8. liniile 69-77
+9. liniile: 76, 78, 115, 186, 207
+10. b: linia 207
+    i: linia 165 
+    strong: linia 100 
+    em: linia 78
+11. a: linia 159
+    b: linia 218
+    c: liniile 113-115
+    d: linia 74
+12. liniile 89-103, 123-154
+13. a: linia 219
+    b: linia 219
+    c: linia 219
+    d: linia 219
+14. linia 221
+bonus1. liniile 203-214
+bonus2. linia 102
+bonus4. liniile 84-85

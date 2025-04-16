@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <title>SFATURI</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="DollItUp, păpușă, păpuși">
+        <meta name="description" content="Magazin online dedicat vânzării produselor precumȘ păpuși și accesorii pentru acestea.">
+        <meta name="author" content="Vraciu Mara Alina">
+        <meta name="msapplication-TileColor" content="#FFC0CB">
+
+        <%- include("../fragmente/head.ejs") %>
+    </head>
+    <body>
+        <%- include("../fragmente/header.ejs") %>
+        <main>
+           A doua pagina
+
+           <section id="sfaturi">
+            <h2>SFATURI</h2>
+            <p>Aici veți găsi diferite sfaturi pentru <b>îngrijirea</b> păpușilor dumneavoastră.</p>
+            <p>Puteți consulta următoarele <i>clipuri</i> de pe Youtube, în limba engleză, pentru a pune corect în practică pașii ce trebuie urmați.</p>
+            <p>V-am pus la dispoziție <i>videoclip-uri</i> pentru <b>îngrijirea</b> <b>părului</b>, <b>corpului</b> și a <b>materialelor textile</b>.</p>
+            <p>Pentru a privi doar filmările, faceți <i>click</i> mai jos pe secțiunea de care sunteți interesați. Pentru a citi pas cu pas, în limba română, ceea ce se explică în <i>videoclip-uri</i>, dați <i>scroll</i> mai jos.</p>
+            <div class="container-iframe">
+                <div class="taburi-iframe">
+                <a href="https://www.youtube.com/embed/eO7dVtKzrcE" target="ifr-video" >Păr</a>
+                <a href="https://www.youtube.com/embed/VQUHKI5Dsn4" target="ifr-video" >Corp</a>
+                <a href="https://www.youtube.com/embed/KyRwuzix4NM" target="ifr-video" >Materiale textile</a><br>
+                </div>
+            
+                <iframe name="ifr-video" width="560" height="315" src="https://www.youtube.com/embed/eO7dVtKzrcE"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <section id="par">
+                <h3>PĂR</h3>
+                <details><summary></summary>
+                <ol>
+                    <li>Piaptănă <b>părul</b> păpușii cu grijă pentru a nu îl smulge.</li>
+                    <li>Spală cu șampon.</li>
+                    <li>Spală cu balsam.</li>
+                    <li>Piaptănă <b>părul</b> și așteaptă să se usuce.</li>
+                    <li>Pentru <b>părul</b> lipicios, pune pudră și șampon uscat în zonele problematice.</li>
+                    <li>Pentru a îndrepta <b>părul</b> păpușii, înmuiați-l în apă fiartă pentru câteva secunde, apoi pieptănați-l și lăsați-l la uscat.</li>
+                </ol>
+                </details>
+            </section>
+            <section id="corp">
+                <h3>Corp</h3>
+                <details><summary></summary>
+                <ol>
+                    <li>Presupunând faptul că deja ați încercat să spălați <b>corpul</b> cu apă și săpun și nu au fost îndepărtate petele, luați vaselină.</li>
+                    <li>Frecați cu grijă cât să nu murdăriți <b>părul</b> sau hainele.</li>
+                    <li>Îndepărtați vaselina de pe <b>corp</b> cu un servețel.</li>
+                </ol>
+                </details>
+            </section>
+            <section id="materiale_textile">
+                <h3>MATERIALE TEXTILE</h3>
+                <details><summary></summary>
+                <ol>
+                    <li>Tamponați folosind săpun și apă pe <b>materialul textil</b>.</li>
+                    <li>Într-un capac, amestecați detergent și apă, apoi înmuiați haina în acestea.</li>
+                    <li>Frecați ușor <b>materialul</b> pentru a nu îl strica.</li>
+                    <li>Lăsați haina în detergentul combinat cu apă timp de 10 minute apoi clătiți.</li>
+                    <li>Frecați balsam în <b>materialul textil</b>, iar după 3-4 minute clătiți și așteptați să se usuce.</li>
+                </ol>
+                </details>
+            </section>
+        </section>
+        </main>
+        <%- include("../fragmente/footer.ejs") %>
+    </body>
+</html>
