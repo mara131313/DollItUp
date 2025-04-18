@@ -57,3 +57,8 @@ a.	Schema chromatică aleasă: #D96498, #B366E9, #E58AB2, #A67085, #FFD9E1, #E58
 •	https://png.pngtree.com/png-vector/20240309/ourmid/pngtree-pink-magnifying-glass-chalk-line-art-png-image_11913954.png
 •	https://th.bing.com/th/id/R.4e8a0ed2da0c36b21dbbc4b1e0d843af?rik=OIcxemTgso3UeA&riu=http%3a%2f%2feftiranian.ir%2fIMG%2fAccessDenied.png&ehk=ZfpbBTtufc6LqaYWR%2fiaXjXwyrH%2fa7hYZxWzP7lvXc0%3d&risl=&pid=ImgRaw&r=0
 •	https://stackoverflow.com/questions
+•	https://www.pexels.com/video/grandmother-and-granddaughter-playing-with-a-doll-8308622/
+•	https://cloudconvert.com/mp4-to-webm
+•	
+•	
+•	

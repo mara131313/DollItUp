@@ -1,0 +1,45 @@
+html {
+    --c1: #FFD9E1;
+    --c2: #573851;
+}
+
+video {
+    width: 100;
+    max-width: 800px;
+    min-width: 300px;
+    display: block;
+    margin: 0 auto;
+}
+
+::cue {
+    background-color: var(--c1);
+    color: var(--c2);
+}
+
+::cue(.subliniat) {
+    text-decoration: underline;
+} 
+
+::cue(.sus) {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    text-align: right;
+    background-color: var(--c1);
+    color: var(--c2);
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+@media screen and (max-width:1024px) {
+    video {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width:800px) {
+    video {
+        width: 40%;
+    }
+}

@@ -10,6 +10,7 @@
         <meta name="msapplication-TileColor" content="#FFC0CB">
 
         <link rel="stylesheet" href="/resurse/css/layout.css" type="text/css" />
+        <link rel="stylesheet" href="/resurse/SCSS/video.css" type="text/css" />
         <%- include("../fragmente/head.ejs") %>
     </head>
     <body>
@@ -29,6 +30,13 @@
                             <figcaption style="text-align: center">Universul <b>păpușilor</b></figcaption>
                         </figure>
                         <p>Bine ai venit la <b>DollItUp</b>. Ești pregătit să intri în <em>universul <b>păpușilor</b></em>? Descarcă lista asocierii liniilor de cod cu <i>task-urile</i> proiectului <a href="resurse/documente/task.txt" download>aici</a>.</p>
+                        <video controls preload="metadata" poster="resurse/imagini/poster.png">
+                            <source src="resurse/video/video.mp4" type="video/mp4">
+                            <source src="resurse/video/video.webm" type="video/webm">
+                            <track src="resurse/video/subtitrari/ro.vtt" kind="subtitles" srclang="ro" label="Română" default>
+                            <track src="resurse/video/subtitrari/en.vtt" kind="subtitles" srclang="en" label="English">
+                            Browserul tău nu suportă elementul video.
+                          </video>
                         <section id="despre_noi">
                             <h3>Depre noi</h3>
                             <p>Am deschis primul nostru magazin <b>DollItUp</b> în data de 01.03.2025, în București. De atunci, facem copiii și colecționarii fericiți cu <b>păpușile</b> noastre.</p>

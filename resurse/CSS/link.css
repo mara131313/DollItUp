@@ -1,0 +1,46 @@
+html {
+    --c1: #FFD9E1;
+    --culoare-vizitat: #B366E9;
+    --culoare-hover: #b3478f;
+}
+
+a:visited {
+    color: var(--culoare-vizitat);
+}
+
+a[href^="http"]::before {
+    content: "⮳";
+    font-size: 1.5em;
+    margin-right: 0.25em;
+    vertical-align: middle;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+a[href^="http"]:hover::before {
+    color: var(--culoare-hover);
+}
+  
+main a {
+    position: relative;
+    display: inline-block;
+    padding: 0.1em 0.2em;
+    line-height: 1.2;
+    color: inherit;
+    text-decoration: none;
+    background-image: radial-gradient(ellipse, var(--c1) 0%, var(--c1) 40%, transparent 80%, transparent 100%);
+    background-position: center;
+    background-size: 0% 0%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s ease;
+}
+  
+main a:hover {
+    background-size: 100% 100%;
+}
+  
+a:active {
+    outline: none;
+    border: 2px solid var(--c1);
+    border-radius: 4px;
+}
