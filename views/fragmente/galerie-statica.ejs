@@ -1,0 +1,22 @@
+<% if (imagini.length === 0) { %>
+    <p>Nicio imagine disponibilă în acest sfert de oră.</p>
+<% } else { %>
+    <div class="galerie">
+        <% grid.forEach(function(imag, index){ %>
+            <% if (imag) { %>  
+                <figure>
+                    <picture>
+                        <source media="(max-width: 1024px)" srcset="<%= imag.cale_imagine_mediu %>">
+                        <img src="<%= imag.cale_imagine %>" alt="<%= imag.titlu %>" 
+                            title="<%= imag.titlu %>">
+                    </picture>
+                    <figcaption>
+                        <span class="index"></span> <%= imag.descriere %>
+                    </figcaption>
+                </figure>
+            <% } else { %>
+                <div class="spatiu-gol"></div>
+            <% } %>
+        <% }) %>
+    </div>
+<% } %>

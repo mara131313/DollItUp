@@ -1,0 +1,46 @@
+.galerie {
+    counter-reset: roman-counter;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, auto);
+    gap: 2px;
+    padding: 0px;
+}
+
+.galerie figure {
+    counter-increment: roman-counter;
+    text-align: center;
+    transition: transform 0.2s ease, border 0.2s ease;
+    border: 0px solid transparent;
+}
+
+.galerie figure:hover {
+    transform: scale(1.25) rotate(-10deg);
+    border-width: 4px;
+    border-color: black;
+}
+
+.galerie figcaption .index::before {
+    content: counter(roman-counter, upper-roman) ". ";
+    font-weight: bold;
+}
+
+.spatiu-gol {
+    background: transparent;
+    height: 100%;
+}
+
+@media (max-width: 1024px) {
+    .galerie {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .spatiu-gol {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .galerie {
+        grid-template-columns: 1fr;
+    }
+}
