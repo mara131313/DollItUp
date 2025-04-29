@@ -71,6 +71,7 @@ a{
     display: inline-block;
     text-align: center;
     position: relative;
+    height: 50px;
 }
   
 h2 {

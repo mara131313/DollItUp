@@ -1,0 +1,31 @@
+@use "../../node_modules/bootstrap/scss/bootstrap.scss" with (
+  $primary: #E58AB2,
+  $secondary: #573851,
+
+  $headings-color: #D96498,
+  $link-hover-color: #2A1B24,
+
+  $grid-breakpoints: (
+    sm: 600px,
+    md: 1024px,
+    lg: 1400px
+  ),
+
+  $border-radius: 0.3rem,
+  $border-radius-sm: 0.2rem,
+  $border-radius-lg: 0.5rem,
+
+  $h1-font-size: 2.5rem,
+  $h2-font-size: 2.1rem,
+  $h3-font-size: 1.8rem,
+  $h4-font-size: 1.6rem,
+  $h5-font-size: 1.4rem,
+  $h6-font-size: 1.2rem,
+
+  $font-family-sans-serif: (
+    "Poppins",
+    sans-serif,
+  ),
+
+  $border-color: #573851
+);
