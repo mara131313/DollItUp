@@ -44,6 +44,24 @@
 			"sfert":"1"
 		},
 		{
+			"cale_imagine":"poza1-8.jpg",
+			"titlu":"Păpușă de colecție",
+			"descriere":"Skelly",
+			"sfert":"1"
+		},
+		{
+			"cale_imagine":"poza1-9.jpg",
+			"titlu":"Păpușă de colecție",
+			"descriere":"Bar Doll",
+			"sfert":"1"
+		},
+		{
+			"cale_imagine":"poza1-10.jpg",
+			"titlu":"Păpușă de colecție",
+			"descriere":"Colecție",
+			"sfert":"1"
+		},
+		{
 			"cale_imagine":"poza2-1.jpg",
 			"titlu":"Păpușă pentru bebeluși",
 			"descriere":"Păpușă mare",
@@ -71,6 +89,36 @@
 			"cale_imagine":"poza2-5.jpg",
 			"titlu":"Păpușă pentru bebeluși",
 			"descriere":"Bebe băiat",
+			"sfert":"2"
+		},
+		{
+			"cale_imagine":"poza2-6.jpg",
+			"titlu":"Păpușă pentru bebeluși",
+			"descriere":"Vulpe și urs",
+			"sfert":"2"
+		},
+		{
+			"cale_imagine":"poza2-7.jpg",
+			"titlu":"Păpușă pentru bebeluși",
+			"descriere":"Bebe doctor",
+			"sfert":"2"
+		},
+		{
+			"cale_imagine":"poza2-8.jpg",
+			"titlu":"Păpușă pentru bebeluși",
+			"descriere":"Balena",
+			"sfert":"2"
+		},
+		{
+			"cale_imagine":"poza2-9.jpg",
+			"titlu":"Păpușă pentru bebeluși",
+			"descriere":"Bebe băiat gri",
+			"sfert":"2"
+		},
+		{
+			"cale_imagine":"poza2-10.jpg",
+			"titlu":"Păpușă pentru bebeluși",
+			"descriere":"Bebe la salon",
 			"sfert":"2"
 		},
 		{
@@ -104,6 +152,36 @@
 			"sfert":"3"
 		},
 		{
+			"cale_imagine":"poza3-6.jpg",
+			"titlu":"Păpușă pentru copii",
+			"descriere":"Poliția",
+			"sfert":"3"
+		},
+		{
+			"cale_imagine":"poza3-7.jpg",
+			"titlu":"Păpușă pentru copii",
+			"descriere":"Păpușă mare",
+			"sfert":"3"
+		},
+		{
+			"cale_imagine":"poza3-8.jpg",
+			"titlu":"Păpușă pentru copii",
+			"descriere":"Prințesa",
+			"sfert":"3"
+		},
+		{
+			"cale_imagine":"poza3-9.jpg",
+			"titlu":"Păpușă pentru copii",
+			"descriere":"Iepuraș gras",
+			"sfert":"3"
+		},
+		{
+			"cale_imagine":"poza3-10.jpg",
+			"titlu":"Păpușă pentru copii",
+			"descriere":"Bebe pacient",
+			"sfert":"3"
+		},
+		{
 			"cale_imagine":"poza4-1.jpg",
 			"titlu":"Păpuși drăguțe",
 			"descriere":"Păpuși din filme",
@@ -131,6 +209,36 @@
 			"cale_imagine":"poza4-5.jpg",
 			"titlu":"Păpușă drăguță",
 			"descriere":"Pinocchio",
+			"sfert":"4"
+		},
+		{
+			"cale_imagine":"poza4-6.jpg",
+			"titlu":"Păpuși drăguțe",
+			"descriere":"Om de zăpadă",
+			"sfert":"4"
+		},
+		{
+			"cale_imagine":"poza4-7.jpg",
+			"titlu":"Păpuși drăguțe",
+			"descriere":"Motocicletă",
+			"sfert":"4"
+		},
+		{
+			"cale_imagine":"poza4-8.jpg",
+			"titlu":"Păpuși drăguțe",
+			"descriere":"Ursuleț",
+			"sfert":"4"
+		},
+		{
+			"cale_imagine":"poza4-9.jpg",
+			"titlu":"Păpuși drăguțe",
+			"descriere":"Elefant",
+			"sfert":"4"
+		},
+		{
+			"cale_imagine":"poza4-10.jpg",
+			"titlu":"Păpușă drăguță",
+			"descriere":"Hello Kitty",
 			"sfert":"4"
 		}
 	]

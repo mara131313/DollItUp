@@ -38,6 +38,7 @@ html {
     --culoare10: #FFD9E1;
     --culoare11: #E58AB2;
     --culoare12: rgba(0, 0, 0, 0.7);
+    --culoare13: #2A1B24; 
     padding: 40px;
     font-size: 18px;
     transition: font-size 0.5s ease-in;
@@ -50,6 +51,11 @@ h1, h2{
     font-style: normal;
     color: var(--culoare1)
 }
+
+::selection {
+    background-color: var(--culoare13);
+    color: var(--culoare4);
+}  
 
 a{
     text-decoration: none;
@@ -93,6 +99,13 @@ h2::after {
     0% { filter: url(#wave); }
     50% { filter: url(#wave-animated); }
     100% { filter: url(#wave); }
+}
+
+.coloana {
+    column-count: 2;
+    column-gap: 10px;
+    column-rule: 1px solid var(--culoare6);
+
 }
 
 .taburi-iframe > a {
@@ -299,6 +312,9 @@ mspace {
     }  
     table{
         min-width: 400px;
+    }
+    .coloana{
+        column-count: 1;
     }
 }
 

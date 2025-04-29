@@ -28,7 +28,7 @@
 .zona3 {
     grid-area: zona3;
     background-color: var(--culoare7);
-    max-width: 200px;
+    max-width: 220px;
 }
 
 .zona2 {
@@ -44,7 +44,7 @@
 .zona5 {
     grid-area: zona5;
     background-color: var(--culoare7);
-    max-width: 200px;
+    max-width: 220px;
 }
 
 .zona6 {
