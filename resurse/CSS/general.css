@@ -1,5 +1,10 @@
 body{
-    background-color: var(--culoare9);
+    height: 100vh;
+    background-image: url("../imagini/background/poza1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transition: background-image 2s ease-in-out;
 }
 
 header{
