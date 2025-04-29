@@ -36,7 +36,6 @@ for (let folder of vect_foldere ){
 }
 
 function compileazaScss(caleScss, caleCss){
-    console.log("cale:",caleCss);
     if(!caleCss){
         let numeFisExt=path.basename(caleScss);
         let numeFis=numeFisExt.split(".")[0] 
@@ -46,21 +45,31 @@ function compileazaScss(caleScss, caleCss){
         caleScss=path.join(obGlobal.folderScss,caleScss )
     if (!path.isAbsolute(caleCss))
         caleCss=path.join(obGlobal.folderCss,caleCss )
+
     let caleBackup=path.join(obGlobal.folderBackup, "resurse/css");
     if (!fs.existsSync(caleBackup)) {
         fs.mkdirSync(caleBackup,{recursive:true})
     }
-    let numeFisCss=path.basename(caleCss, ".css");
-    let timestamp = Date.now();
-    let numeFisCssBackup = `${numeFisCss}_${timestamp}.css`;
-    if (fs.existsSync(caleCss)) {
-        fs.copyFileSync(
-            caleCss, 
-            path.join(obGlobal.folderBackup, "resurse/css", numeFisCssBackup)
-        );
+
+    let rez = sass.compile(caleScss, { sourceMap: true });
+    let cssNou = rez.css.toString();
+    let cssVechi = "";
+    let existaCssVechi = fs.existsSync(caleCss);
+    if (existaCssVechi) {
+        cssVechi = fs.readFileSync(caleCss).toString();
     }
-    rez=sass.compile(caleScss, {"sourceMap":true});
-    fs.writeFileSync(caleCss,rez.css)
+
+    if (cssVechi !== cssNou) {
+        if (existaCssVechi) {
+            let numeFisCss = path.basename(caleCss, ".css");
+            let timestamp = Date.now();
+            let numeFisCssBackup = `${numeFisCss}_${timestamp}.css`;
+            fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup, "resurse/css", numeFisCssBackup));
+        }
+        fs.writeFileSync(caleCss, cssNou);
+    } else {
+        console.log(`Nicio modificare pentru: ${caleCss}`);
+    }
 }
 
 vFisiere=fs.readdirSync(obGlobal.folderScss);
