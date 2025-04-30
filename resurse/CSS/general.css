@@ -80,6 +80,10 @@ h2 {
     line-height: 1;
     position: relative;
 }
+
+h4 {
+    text-align: center;
+}
   
 h2::after {
     content: attr(data-text);

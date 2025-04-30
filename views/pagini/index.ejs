@@ -16,7 +16,9 @@
         <link rel="stylesheet" href="/resurse/SCSS/video.css" type="text/css" />
     </head>
     <body>
+        <header>
         <%- include("../fragmente/header.ejs") %>
+        </header>
         <div class="background-section">
         <main>
             <%- include("../fragmente/galerie-statica.ejs") %>
@@ -72,63 +74,19 @@
                     </section>
                 </div>
                 <div class="zona8">
-                    <section id="cumpara">
+                    <section id="promotii">
                         <svg width="0" height="0">
                             <filter id="wave">
                               <feTurbulence type="turbulence" baseFrequency="0.02 0.1" numOctaves="2" result="turbulence"/>
                               <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="10" xChannelSelector="R" yChannelSelector="G"/>
                             </filter>
-                          
                             <filter id="wave-animated">
                               <feTurbulence type="turbulence" baseFrequency="0.04 0.15" numOctaves="3" result="turbulence">
                                 <animate attributeName="baseFrequency" dur="2s" values="0.02 0.1;0.04 0.15;0.02 0.1" repeatCount="indefinite"/>
                               </feTurbulence>
                               <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="20" xChannelSelector="R" yChannelSelector="G"/>
                             </filter>
-                          </svg>
-                        <div class="container-zona8">
-                        <h2 data-text="CUMPĂRĂ">CUMPĂRĂ</h2></div>
-                        <p>Pe pagina noastră, puteți găsi păpuși de la diferite <i>brand-uri</i>, însă cu prețuri mai bune. Dacă nu găsiți o păpușă căutată, puteți verifica si pe <i>site-urile</i> oficiale. Trebuie doar să verificați ce marcă a produs păpușa, iar apoi, accesați <i>site-ul</i> care se potrivește dorințelor dvs. Păpușile <b>Bratz</b> au un <i>site</i> oficial : <a href="https://www.bratz.com/" target="_blank">aici</a>, însă <b>Barbie</b> și <b>MonsterHigh</b> pot fi găsite pe <i>site-ul</i> nostru partener : <a href="https://shop.mattel.com/" target="_blank">aici</a></p>
-                        <section id="papusi">
-                            <h3>PĂPUȘI</h3>
-                            <section id="0-2_ani">
-                                <h4>Vârsta 0-2 ani</h4>
-                                <p>Aici vor fi vândute păpuși <b>Barbie</b>.</p>
-                            </section>
-                            <section id="3-5_ani">
-                                <h4>Vârsta 3-5 ani</h4>
-                                <p>Aici vor fi vândute păpuși <b>Barbie</b>.</p>
-                            </section>
-                            <section id="6-10_ani">
-                                <h4>Vârsta 6-10 ani</h4>
-                                <p>Aici vor fi vândute păpuși <b>MonsterHigh</b>.</p>
-                            </section>
-                            <section id="10-14_ani">
-                                <h4>Vârsta 10-14 ani</h4>
-                                <p>Aici vor fi vândute păpuși <b>Bratz</b>.</p>
-                            </section>
-                            <section id="colectie">
-                                <h4>Păpuși de colecție</h4>
-                                <p>Aici vor fi vândute păpuși <b>Barbie</b>, <b>MonsterHigh</b> și <b>Bratz</b>.</p>
-                            </section>
-                        </section>
-                        <section id="accesorii">
-                            <h3>ACCESORII</h3>
-                            <section id="haine">
-                                <h4>Haine</h4>
-                                <p>Aici vor fi vândute haine pentru păpuși <b>Barbie</b>, <b>MonsterHigh</b> și <b>Bratz</b>.</p>
-                            </section>
-                            <section id="incaltaminte">
-                                <h4>Încălțăminte</h4>
-                                <p>Aici va fi vândută încălțăminte pentru păpuși <b>Barbie</b>, <b>MonsterHigh</b> și <b>Bratz</b>.</p>
-                            </section>
-                            <section id="case_de_papusi">
-                                <h4>Case de păpuși</h4>
-                                <p>Aici vor fi vândute căsuțe pentru păpuși <b>Barbie</b>, <b>MonsterHigh</b> și <b>Bratz</b>.</p>
-                            </section>
-                        </section>
-                    </section>
-                    <section id="promotii">
+                        </svg>
                         <div class="container-zona8">
                         <h2 data-text="PROMOȚII">PROMOȚII</h2></div>
                         <p>Aici vor apărea <b>cadouri</b>, <b>promoții</b> și <b>reduceri</b></p>

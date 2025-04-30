@@ -3,6 +3,26 @@ const path= require("path");
 const fs = require("fs");
 const sharp = require("sharp");
 const sass = require("sass");
+const pg = require("pg");
+const Client=pg.Client;
+
+client=new Client({
+    database:"proiect",
+    user:"mara",
+    password:"mara",
+    host:"localhost",
+    port:5432
+})
+
+client.connect()
+client.query("select * from papusi", function(err, rezultat ){
+    console.log(err)    
+    console.log("Rezultat query:", rezultat)
+})
+client.query("select * from unnest(enum_range(null::categ_papusi))", function(err, rezultat ){
+    console.log(err)    
+    console.log(rezultat)
+})
 
 app= express();
 
@@ -180,10 +200,6 @@ app.get("/favicon.ico", function(req, res){
     res.sendFile(path.join(__dirname, "resurse/imagini/favicon/favicon.ico"))
 })
 
-app.get("/index/a", function(req, res){
-    res.render("pagini/sfaturi");
-})
-
 app.get(["/galerie", "/", "/home", "/index"], function(req, res) {
     const data = new Date();
     const min = data.getMinutes();
@@ -216,6 +232,14 @@ app.get("/index/a", function(req, res){
     res.render("pagini/index");
 })
 
+app.get("/index/b", function(req, res){
+    res.render("pagini/sfaturi");
+})
+
+app.get("/index/b", function(req, res){
+    res.render("pagini/produse");
+})
+
 app.get("/cerere", function(req, res){
     res.send("<p style='color:magenta;'> Bunaa ZIUA!</p>")
 })
@@ -238,15 +262,16 @@ app.get("/abc", function(req, res, next){
 app.get("/abc", function(req, res, next){
     console.log("---------")
 })
+
 app.get("/produse", function(req, res){
     console.log(req.query)
-    var conditieQuery=""; // TO DO where din parametri
+    var conditieQuery="";
 
-    queryOptiuni=""
+    queryOptiuni="select * from unnest(enum_range(null::categ_papusi))"
     client.query(queryOptiuni, function(err, rezOptiuni){
         console.log(rezOptiuni)
 
-        queryProduse=""
+        queryProduse="select * from papusi"
         client.query(queryProduse, function(err, rez){
             if (err){
                 console.log(err);
@@ -257,6 +282,20 @@ app.get("/produse", function(req, res){
             }
         })
     });
+})
+
+app.get("/produs/:id", function(req, res) {
+    const idProdus= req.params.id;
+    const query = `select * from papusi where id = $1`;
+    client.query(query, [idProdus], function(err, rez) {
+        if(err || rez.rows.length === 0) {
+            console.log("Produs inexistent: ", err);
+            afisareEroare(res, 2);
+        }
+        else {
+            res.render("pagini/produs", { produs: rez.rows[0]})
+        }
+    })
 })
 
 app.get(/^\/resurse\/[a-zA-Z0-9_\/]*$/, function(req, res, next){

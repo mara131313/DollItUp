@@ -12,10 +12,25 @@
         <%- include("../fragmente/head.ejs") %>
     </head>
     <body>
+        <header>
         <%- include("../fragmente/header.ejs") %>
+        </header>
         <main>
            <section id="sfaturi">
-            <h2>SFATURI</h2>
+            <svg width="0" height="0">
+                <filter id="wave">
+                  <feTurbulence type="turbulence" baseFrequency="0.02 0.1" numOctaves="2" result="turbulence"/>
+                  <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="10" xChannelSelector="R" yChannelSelector="G"/>
+                </filter>
+                <filter id="wave-animated">
+                  <feTurbulence type="turbulence" baseFrequency="0.04 0.15" numOctaves="3" result="turbulence">
+                    <animate attributeName="baseFrequency" dur="2s" values="0.02 0.1;0.04 0.15;0.02 0.1" repeatCount="indefinite"/>
+                  </feTurbulence>
+                  <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="20" xChannelSelector="R" yChannelSelector="G"/>
+                </filter>
+            </svg>
+            <div class="container-zona8">
+            <h2 data-text="SFATURI">SFATURI</h2></div>
             <p>Aici veți găsi diferite sfaturi pentru <b>îngrijirea</b> păpușilor dumneavoastră.</p>
             <p>Puteți consulta următoarele <i>clipuri</i> de pe Youtube, în limba engleză, pentru a pune corect în practică pașii ce trebuie urmați.</p>
             <p>V-am pus la dispoziție <i>videoclip-uri</i> pentru <b>îngrijirea</b> <b>părului</b>, <b>corpului</b> și a <b>materialelor textile</b>.</p>
