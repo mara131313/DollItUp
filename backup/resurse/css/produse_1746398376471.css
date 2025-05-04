@@ -1,0 +1,8 @@
+.info-prod {
+  display: flex;
+  gap: 1rem;
+}
+
+.col1, .col2 {
+  flex: 1;
+}

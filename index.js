@@ -293,7 +293,7 @@ app.get("/produs/:id", function(req, res) {
             afisareEroare(res, 2);
         }
         else {
-            res.render("pagini/produs", { produs: rez.rows[0]})
+            res.render("pagini/produs", { prod: rez.rows[0]})
         }
     })
 })

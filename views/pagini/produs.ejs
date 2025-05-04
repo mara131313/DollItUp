@@ -12,24 +12,43 @@
     </head>
     <body>
         <header class="c1" id="titlu" >
-            <h1 style="color: #573851;"><span>DollItUp</span></h1>
             <%- include("../fragmente/header") %>
         </header>
     <main>
         <section>
             <h2>Pagină produs</h2>
+            <%
+                const data = new Date(locals.prod.data_adaugare);
+                const zile = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
+                const luni = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];
+                const dataFormatata = `${zile[data.getDay()]}, ${data.getDate()} ${luni[data.getMonth()]} ${data.getFullYear()}`;
+            %>
             <article id="art-produs">
                 <h3><span class="nume"><%- locals.prod.nume %></span></h3>
-                <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
-                <p>Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
-                <p>Material: <span class="material"><%- locals.prod.material %> </span></p>
-                <p>Dimensiune: <span class="dimensiune"><%- locals.prod.dimensiune %> </span></p>
-                <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
-                <p>Confecționarea este vegană: <span class="vegan"><%- locals.prod.vegan %> </span></p>
-                <p>Data adăugare: <span class="data_adaugare"><%- locals.prod.data_adaugare %> </span></p>
                 <figure class="imag-produs">
                     <img  src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
-                </figure>    
+                </figure>
+                <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
+                <p>Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
+                <p>Material:
+                    <span class="material">
+                        <% if (Array.isArray(locals.prod.material)) { %>
+                            <% for(let i = 0; i < locals.prod.material.length; i++) { %>
+                                <%= locals.prod.material[i] %><% if(i !== locals.prod.material.length - 1) { %>, <% } %>
+                            <% } %>
+                        <% } else if (locals.prod.material) { %>
+                            <%= locals.prod.material %>
+                        <% } else { %>
+                            nespecificat
+                        <% } %>
+                    </span>
+                </p>
+                <p>Dimensiune: <span class="dimensiune"><%- locals.prod.dimensiune %> </span>cm.</p>
+                <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
+                <p>Confecționarea este vegană: <span class="vegan">><%= prod.vegan ? "Da" : "Nu" %></span></p>
+                <p>Stil: <span class="stil"><%- locals.prod.stil %> </span></p>
+                <p>Tipul de produs: <span class="tip_produs"><%- locals.prod.tip_produs %> </span></p>
+                <p>Data adăugării:<span class="data_adaugare"><time datetime="<%= prod.data_adaugare %>"><%= dataFormatata %></time></span></p>    
             </article>
         </section>
     </main>

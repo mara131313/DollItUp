@@ -10,6 +10,8 @@
         <meta name="msapplication-TileColor" content="#FFC0CB">
 
         <%- include("../fragmente/head.ejs") %>
+        <link rel="stylesheet" href="/resurse/css/produse.css" type="text/css" />
+
         <script type="text/javascript" src=/resurse/js/produse.js></script>
         <script type="text/javascript" src=/resurse/js/produse-cos.js></script>
     </head>
@@ -18,80 +20,90 @@
         <%- include("../fragmente/header.ejs") %>
         </header>
         <main>
-                <p>Pe pagina noastră, puteți găsi păpuși de la diferite <i>brand-uri</i>, însă cu prețuri mai bune. Dacă nu găsiți o păpușă căutată, puteți verifica si pe <i>site-urile</i> oficiale. Trebuie doar să verificați ce marcă a produs păpușa, iar apoi, accesați <i>site-ul</i> care se potrivește dorințelor dvs. Păpușile <b>Bratz</b> au un <i>site</i> oficial : <a href="https://www.bratz.com/" target="_blank">aici</a>, însă <b>Barbie</b> și <b>MonsterHigh</b> pot fi găsite pe <i>site-ul</i> nostru partener : <a href="https://shop.mattel.com/" target="_blank">aici</a></p>
-                <<label> Nume: <input type="text" id="inp-nume"></label>
-                <div> Dimensiune:
-                    <p><label>Mica (dimensiune &lt; 20)
-                        <input id="i_rad1"  name="gr_rad" value="0:20" type="radio"/>
-                    </label></p>
-                    <p><label>Mediu (20 &le; dimensiune &lt; 50)
-                        <input id="i_rad2"  name="gr_rad" value="20:50" type="radio"/>
-                    </label>
-                    <p><label>Mare (50 &le; dimensiune &le; 150)
-                        <input id="i_rad3" name="gr_rad" value="50:150" type="radio"/>
-                    </label>
-                    <p><label>Toate
-                        <input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
-                    </label>
-                </div>
-        
-                <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0"  max="150"> <span id="infoRange">(0)</span></label>
-                <label>Select simplu:
-                    <select id="inp-categorie">
-                        <option id="sel-toate" selected value="toate">toate</option>
-                        <% for (let opt of locals.optiuni) { %>
-                            <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
-                        <% } %>
-                    </select>
+            <p>Pe pagina noastră, puteți găsi păpuși de la diferite <i>brand-uri</i>, însă cu prețuri mai bune. Dacă nu găsiți o păpușă căutată, puteți verifica si pe <i>site-urile</i> oficiale. Trebuie doar să verificați ce marcă a produs păpușa, iar apoi, accesați <i>site-ul</i> care se potrivește dorințelor dvs. Păpușile <b>Bratz</b> au un <i>site</i> oficial : <a href="https://www.bratz.com/" target="_blank">aici</a>, însă <b>Barbie</b> și <b>MonsterHigh</b> pot fi găsite pe <i>site-ul</i> nostru partener : <a href="https://shop.mattel.com/" target="_blank">aici</a></p>
+            <label> Nume: <input type="text" id="inp-nume"></label>
+            <div> Dimensiune:
+                <p><label>Mica (dimensiune &lt; 20)
+                    <input id="i_rad1"  name="gr_rad" value="0:20" type="radio"/>
+                </label></p>
+                <p><label>Mediu (20 &le; dimensiune &lt; 50)
+                    <input id="i_rad2"  name="gr_rad" value="20:50" type="radio"/>
                 </label>
+                <p><label>Mare (50 &le; dimensiune &le; 150)
+                    <input id="i_rad3" name="gr_rad" value="50:150" type="radio"/>
+                </label>
+                <p><label>Toate
+                    <input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
+                </label>
+            </div>
         
-                <p>
-                <button class="c1 c2 c3" id="filtrare">Filtreaza</button> 
+            <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0"  max="150"> <span id="infoRange">(0)</span></label>
+            <label>Select simplu:
+                <select id="inp-categorie">
+                    <option id="sel-toate" selected value="toate">toate</option>
+                    <% for (let opt of locals.optiuni) { %>
+                        <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+                    <% } %>
+                </select>
+            </label>
         
-                <button id="resetare">Reseteaza</button><br/>
-                <button id="sortCrescNume">Sorteaza crescator dupa pret si nume</button>
-                <button id="sortDescrescNume">Sorteaza descrescator dupa pret si nume</button>
-                
-                </p>
-              
-                <p id="p-suma">Apăsați Alt+"c" pentru suma preturilor produselor afișate. </p>
-          
-                <section id="produse">
-                    <svg width="0" height="0">
-                        <filter id="wave">
-                          <feTurbulence type="turbulence" baseFrequency="0.02 0.1" numOctaves="2" result="turbulence"/>
-                          <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="10" xChannelSelector="R" yChannelSelector="G"/>
-                        </filter>
-                        <filter id="wave-animated">
-                          <feTurbulence type="turbulence" baseFrequency="0.04 0.15" numOctaves="3" result="turbulence">
-                            <animate attributeName="baseFrequency" dur="2s" values="0.02 0.1;0.04 0.15;0.02 0.1" repeatCount="indefinite"/>
-                          </feTurbulence>
-                          <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="20" xChannelSelector="R" yChannelSelector="G"/>
-                        </filter>
-                    </svg>
-                    <div class="container-zona8">
-                    <h2 data-text="PRODUSE" style="font-size: 40px;"">PRODUSE</h2></div>
-                    <div class="grid-produse">
-                        <% for( let prod of locals.produse) { %>
-                            <article class="produs" >
-                                <h3 class="nume">Nume: <a href="/produs/<%-prod.id %>" ><span class="val-nume"><%- prod.nume%></span></a></h3>
-                                <div class="info-prod">
-                                    <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span></p>
-                                    <p class="Stil">Stil: <span class="val-stil"><%- prod.stil%></span></p>
-                                    <p class="dimensiune">Dimensiune: <span class="val-dimensiune"><%- prod.dimensiune%></span></p>
-                                </div>
-                                <p class="categorie">Categorie:<span class="val-categorie"><%- prod.categorie%></span></p>
-                                <figure>
-                                    <a href="/produs/<%-prod.id %>" ><img src="/resurse/imagini/produse/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
-                                </figure>
-                                <label class="selecteaza-cos">
-                                    Selectează:<br/>
-                                    <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
-                                </label>
-                            </article>
-                        <% }%>
-                    </div>
-                </section>
+            <p>
+            <button class="c1 c2 c3" id="filtrare">Filtreaza</button>     
+            <button id="resetare">Reseteaza</button><br/>
+            <button id="sortCrescNume">Sorteaza crescator dupa pret si nume</button>
+            <button id="sortDescrescNume">Sorteaza descrescator dupa pret si nume</button>
+            
+            </p>              
+            <p id="p-suma">Apăsați Alt+"c" pentru suma preturilor produselor afișate. </p>
+            <section id="produse">
+                <%- include("../fragmente/font.ejs") %>
+                <div class="container-zona8">
+                    <h2 data-text="PRODUSE">PRODUSE</h2></div>
+                <p></p><p></p>
+                <div class="grid-produse">
+                    <% for( let prod of locals.produse) {
+                        const idArticol = "artc-" + prod.id;
+                        const clasaCategorie = prod.categorie.replace(/\s/g, "");
+                        const data = new Date(prod.data_adaugare);
+                        const zile = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
+                        const luni = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];
+                        const dataFormatata = `${zile[data.getDay()]}, ${data.getDate()} ${luni[data.getMonth()]} ${data.getFullYear()}`;
+                    %>
+                    <article id="<%= idArticol %>" class="produs <%= clasaCategorie %>">
+                        <h3 class="nume">Nume: <a href="/produs/<%-prod.id %>" ><span class="val-nume"><%- prod.nume%></span></a></h3>
+                        <div class="col1">
+                            <figure>
+                                <a href="/produs/<%-prod.id %>" ><img src="/resurse/imagini/produse/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
+                            </figure>
+                            <p class="pret"><strong>Pret</strong>:<span class="val-pret"><%- prod.pret%></span></p>
+                            <p class="dimensiune"><strong>Dimensiune</strong>:<span class="val-dimensiune"><%- prod.dimensiune%></span></p>
+                            <p class="stil"><strong>Stil</strong>:<span class="val-stil"><%- prod.stil%></span></p>
+                            <p class="material"><span class="label"><strong>Material</strong>:</span>
+                                <span class="val-material">
+                                    <% if (Array.isArray(prod.material)) { %>
+                                        <% for(let i = 0; i < prod.material.length; i++) { %>
+                                            <%= prod.material[i] %><% if(i !== prod.material.length - 1) { %>, <% } %>
+                                        <% } %>
+                                    <% } else if (prod.material) { %>
+                                        <%= prod.material %>
+                                    <% } else { %>
+                                        nespecificat
+                                    <% } %>
+                                </span>
+                            </p>
+                            <p class="data_adaugare"><strong>Data adăugării</strong>:<span class="val-data_adaugare" >
+                                <time datetime="<%= prod.data_adaugare %>"><%= dataFormatata %></time></span></p>
+                            <p class="vegan"><strong>Vegan</strong>:<span class="val-vegan"><%= prod.vegan ? "Da" : "Nu" %></span></p>
+                        </div>
+                        <div class="col2">
+                            <p class="categorie"><strong>Categorie</strong>:<span class="val-categorie"><%- prod.categorie%></span></p>
+                            <p class="descriere"><strong>Descriere</strong>:<span class="val-descriere"><%- prod.descriere%></span></p>                                
+                            <label class="selecteaza-cos">Selectează:<br/><input type="checkbox" class="select-cos" value="<%= prod.id %>" autocomplete="off"></label>
+                        </div>
+                    </article>
+                <% }%>
+                </div>
+            </section>
         </main>
         <%- include("../fragmente/footer.ejs") %>
     </body>
