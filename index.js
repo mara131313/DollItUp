@@ -17,11 +17,11 @@ client=new Client({
 client.connect()
 client.query("select * from papusi", function(err, rezultat ){
     console.log(err)    
-    console.log("Rezultat query:", rezultat)
+    //console.log("Rezultat query:", rezultat)
 })
 client.query("select * from unnest(enum_range(null::categ_papusi))", function(err, rezultat ){
     console.log(err)    
-    console.log(rezultat)
+   // console.log(rezultat)
 })
 
 app= express();
@@ -264,12 +264,12 @@ app.get("/abc", function(req, res, next){
 })
 
 app.get("/produse", function(req, res){
-    console.log(req.query)
+    //console.log(req.query)
     var conditieQuery="";
 
     queryOptiuni="select * from unnest(enum_range(null::categ_papusi))"
     client.query(queryOptiuni, function(err, rezOptiuni){
-        console.log(rezOptiuni)
+        //console.log(rezOptiuni)
 
         queryProduse="select * from papusi"
         client.query(queryProduse, function(err, rez){
