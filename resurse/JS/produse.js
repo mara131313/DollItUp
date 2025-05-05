@@ -17,6 +17,9 @@ window.onload = function(){
 
     btn = document.getElementById("filtrare");
     btn.onclick=function(){
+
+        if(!inpValidare()) return;
+
         let inpNume = document.getElementById("inp-nume").value.trim().toLowerCase();
         let vectRadio = document.getElementsByName("gr_rad")
         let inpDimensiune = null
@@ -78,6 +81,18 @@ window.onload = function(){
         }
     }
 
+    function inpValidare() {
+        const textInput = document.querySelector("input[type='text']");
+        const regex = /^[A-Za-zăîâșțĂÎÂȘȚ\s]+$/;
+    
+        if (textInput && !regex.test(textInput.value.trim())) {
+            alert("Caractere invalide. Folosește doar litere și spații.");
+            return false;
+        }
+    
+        return true; 
+    }
+
     document.getElementById("inp-material").addEventListener("change", function(e) {
         if (e.target.value === "") {
             for (let opt of e.target.options) {
@@ -87,4 +102,106 @@ window.onload = function(){
             e.target.querySelector('option[value=""]').selected = false;
         }
     });    
+
+    document.getElementById("sortCresc").onclick = function() {
+        sorteazaProduse(true);
+    }
+    document.getElementById("sortDesc").onclick = function() {
+        sorteazaProduse(false);
+    }
+
+    function sorteazaProduse(ascendent) {
+        let container = document.getElementsByClassName("grid-produse")[0];
+        let produse = Array.from(container.getElementsByClassName("produs"));
+    
+        produse.sort((a, b) => {
+            let numeA = a.querySelector(".val-nume").textContent.trim().toLowerCase();
+            let numeB = b.querySelector(".val-nume").textContent.trim().toLowerCase();
+    
+            let pretA = parseFloat(a.querySelector(".val-pret").textContent.trim());
+            let pretB = parseFloat(b.querySelector(".val-pret").textContent.trim());
+    
+            let dimA = parseFloat(a.querySelector(".val-dimensiune").textContent.trim());
+            let dimB = parseFloat(b.querySelector(".val-dimensiune").textContent.trim());
+    
+            let raportA = dimA / pretA;
+            let raportB = dimB / pretB;
+    
+            let cmpNume = numeA.localeCompare(numeB);
+            if (cmpNume !== 0)
+                return ascendent ? cmpNume : -cmpNume;
+            
+            return ascendent ? (raportA - raportB) : (raportB - raportA);
+        });
+    
+        produse.forEach(p => container.appendChild(p));
+    }
+
+    document.getElementById("suma").onclick = function() {
+        let selectate = document.querySelectorAll(".select-cos:checked");
+        let total = 0;
+
+        selectate.forEach(cb => {
+            let produs = cb.closest(".produs");
+            if (produs) {
+                let pret = parseFloat(produs.querySelector(".val-pret").textContent.trim());
+                if (!isNaN(pret)) total += pret;
+            }
+        });
+        
+        let div = document.createElement("div");
+        div.style.position = "fixed";
+        div.style.top = "20px";
+        div.style.right = "20px";
+        div.style.padding = "10px 15px";
+        div.style.backgroundColor = "#d9edf7";
+        div.style.border = "2px solid #31708f";
+        div.style.color = "#31708f";
+        div.style.fontWeight = "bold";
+        div.style.borderRadius = "10px";
+        div.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)";
+        div.style.zIndex = 1000;
+        div.textContent = `Suma produselor selectate: ${total.toFixed(2)} lei`;
+    
+        document.body.appendChild(div);
+    
+        setTimeout(() => {
+            div.remove();
+        }, 2000);
+    }
+    
+    document.getElementById("reset").onclick = function() {
+        if (confirm("Sigur că vrei să resetezi filtrele?")) {
+            document.getElementById("inp-nume").value = "";
+            document.getElementById("inp-categorie").value = "toate";
+            document.getElementById("inp-stil").value = "";
+            document.getElementById("inp-descriere").value = "";
+            document.getElementById("vegan-da").checked = false;
+            document.getElementById("vegan-nu").checked = false;
+            let minPret = document.getElementById("inp-pret-min");
+            let maxPret = document.getElementById("inp-pret-max");
+            minPret.value = minPret.min;
+            maxPret.value = maxPret.max;
+            let radio = document.getElementsByName("gr_rad");
+            for (let rad of radio) {
+                if (rad.value == "toate") {
+                    rad.checked = true;
+                } else {
+                    rad.checked = false;
+                }
+            }
+            let materiale = document.getElementById("inp-material");
+            for (let opt of materiale.options) {
+                opt.selected = false;
+            }
+
+            let produse = document.getElementsByClassName("produs");
+            for (let prod of produse) {
+                prod.style.display = "block";
+            }
+    
+            document.getElementById("val-min").textContent = minPret.value;
+            document.getElementById("val-max").textContent = maxPret.value;
+        }
+    }  
 }

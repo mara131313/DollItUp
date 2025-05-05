@@ -11,9 +11,6 @@
 
         <%- include("../fragmente/head.ejs") %>
         <link rel="stylesheet" href="/resurse/css/produse.css" type="text/css" />
-
-        <script type="text/javascript" src=/resurse/js/produse.js></script>
-        <script type="text/javascript" src=/resurse/js/produse-cos.js></script>
     </head>
     <body>
         <header>
@@ -100,13 +97,13 @@
             </select>
 
             <p>
-            <button class="c1 c2 c3" id="filtrare">Filtreaza</button>     
-            <button id="resetare">Reseteaza</button><br/>
-            <button id="sortCrescNume">Sorteaza crescator dupa pret si nume</button>
-            <button id="sortDescrescNume">Sorteaza descrescator dupa pret si nume</button>
-            
+            <button class="c1 c2 c3" id="filtrare">Filtrare</button>     
+            <button id="reset">Resetare</button><br/>
+            <button id="sortCresc">Sortare crescătore: dimensiune/preț și nume</button>
+            <button id="sortDesc">Sortare descrescătore: dimensiune/preț și nume</button>
+            <button id="suma">Calculează suma prețurilor</button>
+
             </p>              
-            <p id="p-suma">Apăsați Alt+"c" pentru suma preturilor produselor afișate. </p>
             <section id="produse">
                 <p></p><p></p>
                 <div class="grid-produse">
@@ -155,5 +152,6 @@
             </section>
         </main>
         <%- include("../fragmente/footer.ejs") %>
+        <script type="text/javascript" src="../../resurse/js/produse.js"></script>
     </body>
 </html>
