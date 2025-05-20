@@ -121,7 +121,6 @@ body {
 }
 .frss button div.img-icon {
   display: block;
-  align-items: center;
 }
 
 @media (max-width: 600px) {

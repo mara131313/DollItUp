@@ -82,16 +82,29 @@ window.onload = function(){
     }
 
     function inpValidare() {
-        const textInput = document.querySelector("input[type='text']");
+        const textInput = document.querySelector("input[type='text'], textarea");
         const regex = /^[A-Za-zăîâșțĂÎÂȘȚ\s]+$/;
     
-        if (textInput && !regex.test(textInput.value.trim())) {
+        if (textInput && !regex.test(textInput.value.trim()) && textInput.value.trim() !== "") {
             alert("Caractere invalide. Folosește doar litere și spații.");
             return false;
         }
     
         return true; 
     }
+
+    document.getElementById("inp-nume").addEventListener("input", function () {
+        const textarea = this;
+        const val = textarea.value.trim();
+    
+        if (val.length < 3) {
+            textarea.classList.add("is-invalid");
+            textarea.classList.remove("is-valid");
+        } else {
+            textarea.classList.remove("is-invalid");
+            textarea.classList.add("is-valid");
+        }
+    });    
 
     document.getElementById("inp-material").addEventListener("change", function(e) {
         if (e.target.value === "") {
@@ -204,4 +217,24 @@ window.onload = function(){
             document.getElementById("val-max").textContent = maxPret.value;
         }
     }  
+
+    const switchToggle = document.getElementById('theme-switch');
+    const icon = document.getElementById('theme-icon');
+
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        icon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        switchToggle.checked = theme === 'dark';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+
+        switchToggle.addEventListener('change', () => {
+            const newTheme = switchToggle.checked ? 'dark' : 'light';
+            applyTheme(newTheme);
+        });
+    });
 }

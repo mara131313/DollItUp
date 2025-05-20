@@ -1,3 +1,24 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --card-bg: #f5f5f5;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #f0f0f0;
+    --card-bg: #1e1e1e;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.card {
+    background-color: var(--card-bg);
+}
+
 #produse {
     padding: 2rem;
     font-family: Arial, sans-serif;
@@ -57,9 +78,70 @@
     align-items: center;
     gap: 0.5rem;
     font-weight: bold;
+} 
+
+.dimensiune {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  
+    label {
+      margin: 0;
+      font-weight: 500;
+      color: #573851;
+    }
+  
+    .btn-group {
+      flex-grow: 1;
+
+      .btn {
+        min-width: 80px;
+        text-align: center;
+      }
+    }
+}  
+
+.frss {
+    display: flex;
+    justify-content: space-column;
+    align-items: center;
+    gap: 0.5rem;
+    button {
+        height: 3rem;
+        padding: 0.5rem;
+        font-weight: 500;
+        transition: transform 0.15s ease;
+        &:hover {
+            transform: translateY(-2px);
+        }
+        div.text-icon {
+            font-size: 1.25rem;
+            display: block;
+        }
+        div.img-icon {
+            display: block;
+            align-items: center;
+        }
+    }
 }
 
 @media (max-width: 600px) {
+    .frss {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        button {
+            flex: 1 1 auto; 
+            div.text-icon{
+                display: none;
+            }      
+            div.img-icon {
+                align-items: center;
+            }    
+        }
+    }
     .produs {
         padding: 1rem;
     }

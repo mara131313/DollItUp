@@ -1,0 +1,94 @@
+:root {
+    --bg-container: #E58AB2;
+    --bg-color: #ffffff;
+    --border-color: #573851;
+    --text-color: #2A1B24;
+}
+
+.container-input {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background-color: var(--bg-container);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    .row {
+        margin-bottom: 1rem;
+    }
+    .range-pret {
+        label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+            span {
+                font-weight: 600;
+                margin: 0 0.25rem;
+            }
+            input[type="range"] {
+                width: 100%;
+                margin-top: 0.25rem;
+                accent-color: #6c63ff;
+            }
+        }
+    }
+    input[type="checkbox"] {
+        margin-right: 0.5rem;
+        accent-color: #28a745;
+        transform: scale(1.1);
+    }
+  
+    label[for^="vegan"] {
+        margin-right: 1rem;
+        font-weight: 500;
+    }
+  
+    #inp-descriere {
+        width: 100%;
+        height: 100px;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-color);
+  
+        &:focus {
+            outline: none;
+            border-color: #6c63ff;
+            box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+        }
+    }
+  
+    #inp-stil {
+        width: 100%;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    
+        &:focus {
+            outline: none;
+            border-color: #6c63ff;
+            box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+        }
+    }
+  
+    #inp-categorie {
+        width: 100%;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+  
+    #inp-material {
+        width: 100%;
+        min-height: 8rem;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        option {
+            padding: 0.25rem;
+        }
+    }
+}  

@@ -1,3 +1,35 @@
+:root {
+    --culoare1: #D96498;
+    --culoare2: #C4A7B3;
+    --culoare3: #402F37;
+    --culoare4: #573851;
+    --culoare5: white;
+    --culoare6: black;
+    --culoare7: #B366E9;
+    --culoare8: #FFB6C1;
+    --culoare9: #A67085;
+    --culoare10: #FFD9E1;
+    --culoare11: #E58AB2;
+    --culoare12: rgba(0, 0, 0, 0.7);
+    --culoare13: #2A1B24; 
+}
+
+[data-theme="dark"] {
+    --culoare1: #D96498;
+    --culoare2: #A67085;
+    --culoare3: #FFD9E1;
+    --culoare4: #E58AB2;
+    --culoare5: black;
+    --culoare6: white;
+    --culoare7: #B366E9;
+    --culoare8: #2A1B24;
+    --culoare9: #C4A7B3;
+    --culoare10: #402F37;
+    --culoare11: #573851;
+    --culoare12: rgba(0, 0, 0, 0.7);
+    --culoare13: #FFB6C1; 
+}
+
 body{
     height: 100vh;
     background-image: url("../imagini/background/poza1.jpg");
@@ -31,19 +63,6 @@ main{
 }   
 
 html {
-    --culoare1: #D96498;
-    --culoare2: #C4A7B3;
-    --culoare3: #402F37;
-    --culoare4: #573851;
-    --culoare5: white;
-    --culoare6: black;
-    --culoare7: #B366E9;
-    --culoare8: #FFB6C1;
-    --culoare9: #A67085;
-    --culoare10: #FFD9E1;
-    --culoare11: #E58AB2;
-    --culoare12: rgba(0, 0, 0, 0.7);
-    --culoare13: #2A1B24; 
     padding: 40px;
     font-size: 18px;
     transition: font-size 0.5s ease-in;

@@ -62,7 +62,7 @@ a.	Schema chromatică aleasă: #D96498, #B366E9, #E58AB2, #A67085, #FFD9E1, #E58
 •	https://www.pexels.com/search/doll/
 •	https://www.pixelstalk.net/pink-backgrounds/
 •	https://getbootstrap.com/docs/5.0/customize/sass/
-•	
+•	https://icons.getbootstrap.com/
 •	
 •	
 •	

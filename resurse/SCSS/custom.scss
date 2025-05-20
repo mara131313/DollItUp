@@ -1,3 +1,8 @@
+$form-range-thumb-bg: #9f6ee0;
+$form-range-track-bg: #9f6ee0;
+$form-range-thumb-width: 1.5rem;
+$form-range-thumb-height: 1.5rem;
+
 @use "../../node_modules/bootstrap/scss/bootstrap.scss" with (
   $primary: #E58AB2,
   $secondary: #573851,
@@ -25,7 +30,34 @@
   $font-family-sans-serif: (
     "Poppins",
     sans-serif,
-  ),
-
-  $border-color: #573851
+  )
 );
+
+$custom-btn-border-width: 2px;
+$custom-btn-border-radius: 0.5rem;
+$custom-btn-gap: 0.5rem;
+$custom-btn-padding-y: 0.4rem;
+$custom-btn-padding-x: 1rem;
+
+button.btn {
+  border-width: $custom-btn-border-width;
+  border-radius: $custom-btn-border-radius;
+  padding: $custom-btn-padding-y $custom-btn-padding-x;
+  display: flex;
+  align-items: center;
+  gap: $custom-btn-gap;
+  transition: all 0.2s ease-in-out;
+
+  i {
+    font-size: 1.1rem;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  & + button {
+    margin-top: 0.5rem;
+  }
+} 
