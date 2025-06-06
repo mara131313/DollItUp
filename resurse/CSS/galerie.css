@@ -23,6 +23,7 @@
 .galerie figcaption .index::before {
     content: counter(roman-counter, upper-roman) ". ";
     font-weight: bold;
+    color: var(--culoare6);
 }
 
 .spatiu-gol {
