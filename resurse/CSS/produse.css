@@ -1,17 +1,5 @@
-:root {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-  --card-bg: #f5f5f5;
-}
-
-[data-theme=dark] {
-  --bg-color: #121212;
-  --text-color: #f0f0f0;
-  --card-bg: #1e1e1e;
-}
-
 body {
-  background-color: var(--bg-color);
+  background-color: var(--culoare5);
   color: var(--text-color);
 }
 
@@ -31,7 +19,7 @@ body {
 }
 
 .produs {
-  background: #D96498;
+  background: var(--culoare1);
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -52,7 +40,7 @@ body {
 }
 .produs p span {
   font-weight: 500;
-  color: #333;
+  color: var(--culoare2);
 }
 
 .col1, .col2 {
@@ -64,7 +52,7 @@ body {
 .nume {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #573851;
+  color: var(--c2);
   text-align: center;
 }
 .nume a {
@@ -90,7 +78,7 @@ body {
 .dimensiune label {
   margin: 0;
   font-weight: 500;
-  color: #573851;
+  color: var(--c2);
 }
 .dimensiune .btn-group {
   flex-grow: 1;

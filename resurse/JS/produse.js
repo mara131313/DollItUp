@@ -217,24 +217,4 @@ window.onload = function(){
             document.getElementById("val-max").textContent = maxPret.value;
         }
     }  
-
-    const switchToggle = document.getElementById('theme-switch');
-    const icon = document.getElementById('theme-icon');
-
-    function applyTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-        icon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
-        switchToggle.checked = theme === 'dark';
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        applyTheme(savedTheme);
-
-        switchToggle.addEventListener('change', () => {
-            const newTheme = switchToggle.checked ? 'dark' : 'light';
-            applyTheme(newTheme);
-        });
-    });
 }

@@ -1,10 +1,6 @@
 html {
     --inaltime-meniu: 30px;
     --latime-buton:300px;
-    --culoare5: white;
-    --culoare6: black;
-    --culoare-deschisa: #E58AB2;
-    --culoare-background: #573851;
 }
 
 nav {
@@ -57,7 +53,6 @@ ul.meniu {
             color: black;
             font-size: 1.2rem;
         }
-        //
         ul {
             display: none;
             background-color: var(--culoare-background);
@@ -73,7 +68,6 @@ ul.meniu {
         input[type="checkbox"].toggle-submeniu{
             display: none;
         }
-        //
     }
     > li {
         width: var(--latime-buton);
