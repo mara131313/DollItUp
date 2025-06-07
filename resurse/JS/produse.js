@@ -15,8 +15,32 @@ window.onload = function(){
     sliderMax.addEventListener("input", actualizeazaAfisajPreturi);
     actualizeazaAfisajPreturi();
 
-    btn = document.getElementById("filtrare");
-    btn.onclick=function(){
+    function inpValidare() {
+        const textInput = document.querySelector("input[type='text'], textarea");
+        const regex = /^[A-Za-zăîâșțĂÎÂȘȚ\s]+$/;
+    
+        if (textInput && !regex.test(textInput.value.trim()) && textInput.value.trim() !== "") {
+            alert("Caractere invalide. Folosește doar litere și spații.");
+            return false;
+        }
+    
+        return true; 
+    }
+
+    document.getElementById("inp-nume").addEventListener("input", function () {
+        const textarea = this;
+        const val = textarea.value.trim();
+    
+        if (val.length < 3) {
+            textarea.classList.add("is-invalid");
+            textarea.classList.remove("is-valid");
+        } else {
+            textarea.classList.remove("is-invalid");
+            textarea.classList.add("is-valid");
+        }
+    });
+
+    document.getElementById("filtrare").onclick=function(){
 
         if(!inpValidare()) return;
 
@@ -53,7 +77,7 @@ window.onload = function(){
             let cond1 = inpNume === "" || nume.startsWith(inpNume);
 
             let dimensiune = parseInt(prod.getElementsByClassName("val-dimensiune")[0].innerHTML.trim())
-            let cond2 = (inpDimensiune == null || inpDimensiune == "toate" || (minDimensiune <= dimensiune && dimensiune < maxDimensiune));
+            let cond2 = (inpDimensiune == null || inpDimensiune == "toate" || (minDimensiune <= dimensiune && dimensiune <= maxDimensiune));
 
             let pret = parseFloat(prod.getElementsByClassName("val-pret")[0].innerHTML.trim())
             let cond3 =  (pretMin <= pret && pret <= pretMax)
@@ -79,32 +103,7 @@ window.onload = function(){
                 prod.style.display = "block";
             }
         }
-    }
-
-    function inpValidare() {
-        const textInput = document.querySelector("input[type='text'], textarea");
-        const regex = /^[A-Za-zăîâșțĂÎÂȘȚ\s]+$/;
-    
-        if (textInput && !regex.test(textInput.value.trim()) && textInput.value.trim() !== "") {
-            alert("Caractere invalide. Folosește doar litere și spații.");
-            return false;
-        }
-    
-        return true; 
-    }
-
-    document.getElementById("inp-nume").addEventListener("input", function () {
-        const textarea = this;
-        const val = textarea.value.trim();
-    
-        if (val.length < 3) {
-            textarea.classList.add("is-invalid");
-            textarea.classList.remove("is-valid");
-        } else {
-            textarea.classList.remove("is-invalid");
-            textarea.classList.add("is-valid");
-        }
-    });    
+    }    
 
     document.getElementById("inp-material").addEventListener("change", function(e) {
         if (e.target.value === "") {
@@ -114,7 +113,7 @@ window.onload = function(){
         } else {
             e.target.querySelector('option[value=""]').selected = false;
         }
-    });    
+    });        
 
     document.getElementById("sortCresc").onclick = function() {
         sorteazaProduse(true);
@@ -126,27 +125,27 @@ window.onload = function(){
     function sorteazaProduse(ascendent) {
         let container = document.getElementsByClassName("grid-produse")[0];
         let produse = Array.from(container.getElementsByClassName("produs"));
-    
+
         produse.sort((a, b) => {
             let numeA = a.querySelector(".val-nume").textContent.trim().toLowerCase();
             let numeB = b.querySelector(".val-nume").textContent.trim().toLowerCase();
-    
+
             let pretA = parseFloat(a.querySelector(".val-pret").textContent.trim());
             let pretB = parseFloat(b.querySelector(".val-pret").textContent.trim());
-    
+
             let dimA = parseFloat(a.querySelector(".val-dimensiune").textContent.trim());
             let dimB = parseFloat(b.querySelector(".val-dimensiune").textContent.trim());
-    
+
             let raportA = dimA / pretA;
             let raportB = dimB / pretB;
-    
+
             let cmpNume = numeA.localeCompare(numeB);
             if (cmpNume !== 0)
                 return ascendent ? cmpNume : -cmpNume;
-            
+
             return ascendent ? (raportA - raportB) : (raportB - raportA);
         });
-    
+
         produse.forEach(p => container.appendChild(p));
     }
 
@@ -161,7 +160,7 @@ window.onload = function(){
                 if (!isNaN(pret)) total += pret;
             }
         });
-        
+
         let div = document.createElement("div");
         div.style.position = "fixed";
         div.style.top = "20px";
@@ -175,14 +174,14 @@ window.onload = function(){
         div.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)";
         div.style.zIndex = 1000;
         div.textContent = `Suma produselor selectate: ${total.toFixed(2)} lei`;
-    
+
         document.body.appendChild(div);
-    
+
         setTimeout(() => {
             div.remove();
         }, 2000);
     }
-    
+
     document.getElementById("reset").onclick = function() {
         if (confirm("Sigur că vrei să resetezi filtrele?")) {
             document.getElementById("inp-nume").value = "";
@@ -216,5 +215,5 @@ window.onload = function(){
             document.getElementById("val-min").textContent = minPret.value;
             document.getElementById("val-max").textContent = maxPret.value;
         }
-    }  
+    }
 }
