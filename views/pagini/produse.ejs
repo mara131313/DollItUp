@@ -30,18 +30,9 @@
                     </div>
                     
                     <div class="col-12 col-md-6 mb-3">
-                        <div class="btn-group dimensiune" role="group" aria-label="dimensiune"> Dimensiune:
-                            <input type="radio" class="btn-check" name="gr_rad" id="i_rad1" value="0:20">
-                            <label class="btn btn-outline-secondary" for="i_rad1">Mică</label>
-
-                            <input type="radio" class="btn-check" name="gr_rad" id="i_rad2" value="20:50">
-                            <label class="btn btn-outline-secondary" for="i_rad2">Medie</label>
-
-                            <input type="radio" class="btn-check" name="gr_rad" id="i_rad3" value="50:150">
-                            <label class="btn btn-outline-secondary" for="i_rad3">Mare</label>
-
-                            <input type="radio" class="btn-check" name="gr_rad" id="i_rad4" value="toate" checked>
-                            <label class="btn btn-outline-secondary" for="i_rad4">Toate</label>
+                        <div class="dimensiune" role="group" aria-label="dimensiune">
+                        <span class="eticheta-dimensiune fw-bold">Dimensiune:</span>
+                        <div class="btn-group grup-dimensiune"></div>
                         </div>
                     </div>
                 </div>        
@@ -52,13 +43,13 @@
                             <label>
                                 Preț minim:
                                 <span class="min-val">0</span>
-                                <input type="range" id="inp-pret-min" min="0" max="150" value="0">
+                                <input type="range" id="inp-pret-min" step="1">
                                 <span>(<span id="val-min">0</span>)</span>
                             </label>
                             <label>
                                 Preț maxim:
                                 <span class="max-val">150</span>
-                                <input type="range" id="inp-pret-max" min="0" max="150" value="150">
+                                <input type="range" id="inp-pret-max" step="1">
                                 <span>(<span id="val-max">150</span>)</span>
                             </label>
                         </div>
@@ -88,22 +79,15 @@
                         <label for="inp-stil">Stil:</label>
                         <input list="stiluri" id="inp-stil" name="stil">
                         <datalist id="stiluri">
-                            <option value="casual">
-                            <option value="modern">
-                            <option value="elegant">
-                            <option value="sport">
-                            <option value="vintage">
                         </datalist>
                     </div>
 
                     <div class="col-12 col-md-6 mb-3">
-                        <label for="inp-categorie">Categorie:</label>
-                        <select id="inp-categorie">
-                            <option id="sel-toate" selected value="toate">toate</option>
-                            <% for (let opt of locals.optiuni) { %>
-                                <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
-                            <% } %>
-                        </select>
+                        <div class="categorie-select">
+                            <label for="inp-categorie" class="form-label">Categorie:</label>
+                            <select id="inp-categorie" class="form-select">
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -111,13 +95,6 @@
                     <div class="col-12 mb-3">
                         <label for="inp-material">Material:</label>
                         <select multiple id="inp-material">
-                            <option value="" id="opt-niciunul">(Niciunul selectat)</option>
-                            <option value="textil">Textil</option>
-                            <option value="plastic">Plastic</option>
-                            <option value="bumbac">Bumbac</option>
-                            <option value="ceramica">Ceramica</option>
-                            <option value="plus">Plus</option>
-                            <option value="piele">Piele</option>
                         </select>
                     </div>
                 </div>

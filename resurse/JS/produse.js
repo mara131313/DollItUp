@@ -4,41 +4,123 @@ window.onload = function(){
     let valMinAfisata = document.getElementById("val-min");
     let valMaxAfisata = document.getElementById("val-max");
 
+    // Preturi bonus1
+    let preturi = Array.from(document.getElementsByClassName("val-pret"))
+                       .map(el => parseFloat(el.textContent.trim()))
+                       .filter(val => !isNaN(val));
+
+    if (preturi.length > 0) {
+        let pretMinimTabel = Math.min(...preturi);
+        let pretMaximTabel = Math.max(...preturi);
+
+        sliderMin.min = pretMinimTabel;
+        sliderMin.max = pretMaximTabel;
+        sliderMin.value = pretMinimTabel;
+
+        sliderMax.min = pretMinimTabel;
+        sliderMax.max = pretMaximTabel;
+        sliderMax.value = pretMaximTabel;
+
+        document.querySelector(".min-val").textContent = pretMinimTabel;
+        document.querySelector(".max-val").textContent = pretMaximTabel;
+    }
+
     function actualizeazaAfisajPreturi() {
         let min = parseInt(sliderMin.value);
         let max = parseInt(sliderMax.value);
         valMinAfisata.textContent = min;
         valMaxAfisata.textContent = max;
     }
-    
+
     sliderMin.addEventListener("input", actualizeazaAfisajPreturi);
     sliderMax.addEventListener("input", actualizeazaAfisajPreturi);
     actualizeazaAfisajPreturi();
 
-    function inpValidare() {
-        const textInput = document.querySelector("input[type='text'], textarea");
-        const regex = /^[A-Za-zăîâșțĂÎÂȘȚ\s]+$/;
-    
-        if (textInput && !regex.test(textInput.value.trim()) && textInput.value.trim() !== "") {
-            alert("Caractere invalide. Folosește doar litere și spații.");
-            return false;
-        }
-    
-        return true; 
+    // Dimensiuni bonus1
+
+    let dimensiuni = Array.from(document.getElementsByClassName("val-dimensiune"))
+                          .map(el => parseInt(el.textContent.trim()))
+                          .filter(val => !isNaN(val));
+    if (dimensiuni.length > 0) {
+        let minDim = Math.min(...dimensiuni);
+        let maxDim = Math.max(...dimensiuni);
+        let range1 = Math.floor((minDim + maxDim) / 5);
+        let range2 = Math.floor((minDim + maxDim) / 3);
+        let grup = document.querySelector(".grup-dimensiune");
+        grup.innerHTML = `
+            <input type="radio" class="btn-check" name="gr_rad" id="i_rad1" value="${minDim}:${range1}">
+            <label class="btn btn-outline-secondary" for="i_rad1">Mică</label>
+
+            <input type="radio" class="btn-check" name="gr_rad" id="i_rad2" value="${range1}:${range2}">
+            <label class="btn btn-outline-secondary" for="i_rad2">Medie</label>
+
+            <input type="radio" class="btn-check" name="gr_rad" id="i_rad3" value="${range2}:${maxDim + 1}">
+            <label class="btn btn-outline-secondary" for="i_rad3">Mare</label>
+
+            <input type="radio" class="btn-check" name="gr_rad" id="i_rad4" value="toate" checked>
+            <label class="btn btn-outline-secondary" for="i_rad4">Toate</label>
+        `;
     }
 
-    document.getElementById("inp-nume").addEventListener("input", function () {
-        const textarea = this;
-        const val = textarea.value.trim();
+    // Categorie bonus1
     
-        if (val.length < 3) {
-            textarea.classList.add("is-invalid");
-            textarea.classList.remove("is-valid");
-        } else {
-            textarea.classList.remove("is-invalid");
-            textarea.classList.add("is-valid");
+    let categorii = Array.from(document.getElementsByClassName("val-categorie"))
+                         .map(el => el.textContent.trim().toLowerCase()).filter(cat => cat !== "nespecificat" && cat !== "");
+    let categoriiUnice = [...new Set(categorii)];
+    let selCategorie = document.getElementById("inp-categorie");
+    selCategorie.innerHTML = `<option id="sel-toate" selected value="toate">toate</option>`;
+    for (let cat of categoriiUnice) {
+        let opt = document.createElement("option");
+        opt.value = cat;
+        opt.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+        selCategorie.appendChild(opt);
+    }
+
+    // Material bonus1
+    let toateMaterialele = Array.from(document.getElementsByClassName("val-material"))
+    .flatMap(el => el.textContent.toLowerCase().split(",").map(s => s.trim())).filter(mat => mat.length > 0 && mat !== "nespecificat"); ;
+
+    let materialeUnice = [...new Set(toateMaterialele)].sort();
+
+    let selMaterial = document.getElementById("inp-material");
+
+    if (selMaterial) {
+        selMaterial.innerHTML = `<option value="" id="opt-niciunul">(Niciunul selectat)</option>`;
+
+        for (let mat of materialeUnice) {
+            let opt = document.createElement("option");
+            opt.value = mat;
+            opt.textContent = mat.charAt(0).toUpperCase() + mat.slice(1);
+            selMaterial.appendChild(opt);
         }
+
+        selMaterial.addEventListener("change", function (e) {    // Logica pentru resetarea selecției
+            if (e.target.value === "") {
+                for (let opt of e.target.options) {
+                    opt.selected = false;
+                }
+            } else {
+                selMaterial.querySelector('option[value=""]').selected = false;
+            }
+        });
+    }
+
+    // STIL bonus1
+    let stiluri = Array.from(document.getElementsByClassName("val-stil")).map(el => el.textContent.trim().toLowerCase()).filter(s => s.length > 0);
+
+    let stiluriUnice = [...new Set(stiluri)];
+
+    let datalistStiluri = document.getElementById("stiluri");
+
+    datalistStiluri.innerHTML = "";
+
+    stiluriUnice.forEach(stil => {
+        let opt = document.createElement("option");
+        opt.value = stil.charAt(0).toUpperCase() + stil.slice(1);
+        datalistStiluri.appendChild(opt);
     });
+
+    // FILTRARE
 
     document.getElementById("filtrare").onclick=function(){
 
@@ -105,15 +187,32 @@ window.onload = function(){
         }
     }    
 
-    document.getElementById("inp-material").addEventListener("change", function(e) {
-        if (e.target.value === "") {
-            for (let opt of e.target.options) {
-                opt.selected = false;
-            }
-        } else {
-            e.target.querySelector('option[value=""]').selected = false;
+        function inpValidare() {
+        const textInput = document.querySelector("input[type='text'], textarea");
+        const regex = /^[A-Za-zăîâșțĂÎÂȘȚ\s]+$/;
+    
+        if (textInput && !regex.test(textInput.value.trim()) && textInput.value.trim() !== "") {
+            alert("Caractere invalide. Folosește doar litere și spații.");
+            return false;
         }
-    });        
+    
+        return true; 
+    }
+
+    document.getElementById("inp-nume").addEventListener("input", function () {
+        const textarea = this;
+        const val = textarea.value.trim();
+    
+        if (val.length < 3) {
+            textarea.classList.add("is-invalid");
+            textarea.classList.remove("is-valid");
+        } else {
+            textarea.classList.remove("is-invalid");
+            textarea.classList.add("is-valid");
+        }
+    }); 
+
+    // SORTARE    
 
     document.getElementById("sortCresc").onclick = function() {
         sorteazaProduse(true);
@@ -149,6 +248,8 @@ window.onload = function(){
         produse.forEach(p => container.appendChild(p));
     }
 
+    // SUMA
+
     document.getElementById("suma").onclick = function() {
         let selectate = document.querySelectorAll(".select-cos:checked");
         let total = 0;
@@ -181,6 +282,8 @@ window.onload = function(){
             div.remove();
         }, 2000);
     }
+
+    // RESETARE
 
     document.getElementById("reset").onclick = function() {
         if (confirm("Sigur că vrei să resetezi filtrele?")) {
