@@ -7627,6 +7627,6 @@ button.btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-button.btn + button {
+button.btn {
   margin-top: 0.5rem;
 }

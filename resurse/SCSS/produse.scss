@@ -115,6 +115,24 @@ body {
     }
 }
 
+#paginare {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-bottom: 5px;
+    button {
+        vertical-align: middle;
+        align-self: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
 @media (max-width: 600px) {
     .frss {
         flex-direction: row;

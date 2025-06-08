@@ -152,8 +152,6 @@ window.onload = function(){
         let inpDescriere = document.getElementById("inp-descriere").value.trim().toLowerCase();
         let produse = document.getElementsByClassName("produs");
 
-        let produseVizibile = 0;
-
         for(let prod of produse){
             prod.style.display = "none";
 
@@ -185,19 +183,21 @@ window.onload = function(){
 
             if(cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8) {
                 prod.style.display = "block";
-                produseVizibile++;
             }
         }
 
-        if (produseVizibile === 0) { //bonus3
+        const produseViz = Array.from(produse).filter(prod => prod.style.display === "block");
+
+        if (produseViz.length === 0) { //bonus3
             document.getElementById("mesaj-fara-produse").style.display = "block";
+            pagContainer.innerHTML = "";
         } else {
             document.getElementById("mesaj-fara-produse").style.display = "none";
+            aplicaPaginareLa(produseViz);
         }
-
     }    
 
-        function inpValidare() {
+    function inpValidare() {
         const textInput = document.querySelector("input[type='text'], textarea");
         const regex = /^[A-Za-zăîâșțĂÎÂȘȚ\s]+$/;
     
@@ -327,6 +327,45 @@ window.onload = function(){
     
             document.getElementById("val-min").textContent = minPret.value;
             document.getElementById("val-max").textContent = maxPret.value;
+
+            aplicaPaginareLa(Array.from(document.getElementsByClassName("produs")));
         }
     }
+
+    const K = 6;  // BONUS 5
+    const pagContainer = document.getElementById("paginare");
+    const containerProduse = document.querySelector(".grid-produse");
+
+    function afiseazaPagina(pagina, produse) {
+        produse.forEach((prod, i) => {
+            prod.style.display = (i >= (pagina - 1) * K && i < pagina * K) ? "block" : "none";
+        });
+
+        pagContainer.querySelectorAll("button").forEach(btn => btn.classList.remove("active"));
+        const btnAct = pagContainer.querySelector(`button[data-pagina='${pagina}']`);
+        if (btnAct) btnAct.classList.add("active");
+    }
+
+    function genereazaButoanePaginare(produse) {
+        const NRL = Math.ceil(produse.length / K);
+        pagContainer.innerHTML = "";
+        if (NRL <= 1) return;
+
+        for (let i = 1; i <= NRL; i++) {
+            const btn = document.createElement("button");
+            btn.textContent = i;
+            btn.classList.add("btn", "btn-outline-primary", "btn-sm");
+            btn.setAttribute("data-pagina", i);
+            btn.addEventListener("click", () => afiseazaPagina(i, produse));
+            pagContainer.appendChild(btn);
+        }
+    }
+
+    function aplicaPaginareLa(produse) {
+        produse.forEach(p => p.style.display = "block");
+        genereazaButoanePaginare(produse);
+        afiseazaPagina(1, produse);
+    }
+
+    aplicaPaginareLa(Array.from(document.getElementsByClassName("produs")));
 }
