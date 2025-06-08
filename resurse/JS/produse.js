@@ -152,6 +152,8 @@ window.onload = function(){
         let inpDescriere = document.getElementById("inp-descriere").value.trim().toLowerCase();
         let produse = document.getElementsByClassName("produs");
 
+        let produseVizibile = 0;
+
         for(let prod of produse){
             prod.style.display = "none";
 
@@ -183,8 +185,16 @@ window.onload = function(){
 
             if(cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8) {
                 prod.style.display = "block";
+                produseVizibile++;
             }
         }
+
+        if (produseVizibile === 0) { //bonus3
+            document.getElementById("mesaj-fara-produse").style.display = "block";
+        } else {
+            document.getElementById("mesaj-fara-produse").style.display = "none";
+        }
+
     }    
 
         function inpValidare() {

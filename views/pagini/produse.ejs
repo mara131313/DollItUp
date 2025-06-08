@@ -112,6 +112,11 @@
 
             <section id="produse">
                 <p></p><p></p>
+
+                <p id="mesaj-fara-produse" style="display:none; font-weight: bold;">
+                    Nu există produse care să corespundă criteriilor!
+                </p>
+
                 <div class="grid-produse">
                     <% for( let prod of locals.produse) {
                         const idArticol = "artc-" + prod.id;

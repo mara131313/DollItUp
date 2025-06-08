@@ -1,25 +1,27 @@
-    const switchToggle = document.getElementById('theme-switch');
-    const icon = document.getElementById('theme-icon');
+const themeSelect = document.getElementById('theme-select');
+const icon = document.getElementById('theme-icon');
 
-    function applyTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-        
-        if (theme === 'dark') {
-            icon.classList.replace('fa-sun', 'fa-moon');
-        } else {
-            icon.classList.replace('fa-moon', 'fa-sun');
-        }
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
 
-        switchToggle.checked = theme === 'dark';
+    if (theme === 'dark') {
+        icon.className = 'fas fa-moon';
+    } else if (theme === 'pastel') {
+        icon.className = 'fas fa-heart';
+    } else {
+        icon.className = 'fas fa-sun';
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        applyTheme(savedTheme);
+    themeSelect.value = theme;
+}
 
-        switchToggle.addEventListener('change', () => {
-            const newTheme = switchToggle.checked ? 'dark' : 'light';
-            applyTheme(newTheme);
-        });
+window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    applyTheme(savedTheme);
+
+    themeSelect.addEventListener('change', () => {
+        const newTheme = themeSelect.value;
+        applyTheme(newTheme);
     });
+});
