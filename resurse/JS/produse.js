@@ -186,6 +186,8 @@ window.onload = function(){
             }
         }
 
+        actualizeazaNumarProduse();
+
         const produseViz = Array.from(produse).filter(prod => prod.style.display === "block");
 
         if (produseViz.length === 0) { //bonus3
@@ -195,6 +197,7 @@ window.onload = function(){
             document.getElementById("mesaj-fara-produse").style.display = "none";
             aplicaPaginareLa(produseViz);
         }
+
     }    
 
     function inpValidare() {
@@ -335,6 +338,7 @@ window.onload = function(){
             document.getElementById("val-min").textContent = minPret.value;
             document.getElementById("val-max").textContent = maxPret.value;
 
+            actualizeazaNumarProduse();
             aplicaPaginareLa(Array.from(document.getElementsByClassName("produs")));
         }
     }
@@ -375,4 +379,22 @@ window.onload = function(){
     }
 
     aplicaPaginareLa(Array.from(document.getElementsByClassName("produs")));
+
+    //BONUS 15
+    function actualizeazaNumarProduse() {
+        const toateProdusele = document.querySelectorAll(".grid-produse article.produs");
+        let count = 0;
+
+        toateProdusele.forEach(prod => {
+            if (getComputedStyle(prod).display !== "none") {
+                count++;
+            }
+        });
+
+        document.getElementById("nr-produse").textContent = count;
+    }
+
+    window.addEventListener("load", () => {
+        actualizeazaNumarProduse();
+    });
 }

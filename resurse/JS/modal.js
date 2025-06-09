@@ -1,7 +1,5 @@
-// Selectăm toate produsele
 document.querySelectorAll("article.produs").forEach(articol => {
   articol.addEventListener("click", function () {
-    // Preluăm toate informațiile
     const nume = this.querySelector(".val-nume").textContent.trim();
     const pret = this.querySelector(".val-pret").textContent.trim();
     const dimensiune = this.querySelector(".val-dimensiune").textContent.trim();
@@ -13,7 +11,6 @@ document.querySelectorAll("article.produs").forEach(articol => {
     const descriere = this.querySelector(".val-descriere").textContent.trim();
     const imagine = this.querySelector("img").src;
 
-    // Inserăm conținutul în modal
     document.getElementById("modal-body").innerHTML = `
       <h2>${nume}</h2>
       <img src="${imagine}" alt="${nume}">
@@ -27,17 +24,14 @@ document.querySelectorAll("article.produs").forEach(articol => {
       <p><strong>Descriere:</strong> ${descriere}</p>
     `;
 
-    // Afișăm modalul
     document.getElementById("modal").style.display = "block";
   });
 });
 
-// Închidere cu butonul „x”
 document.querySelector(".close").addEventListener("click", function () {
   document.getElementById("modal").style.display = "none";
 });
 
-// Închidere dacă se dă click în afara modalului
 window.addEventListener("click", function (e) {
   const modal = document.getElementById("modal");
   if (e.target === modal) {

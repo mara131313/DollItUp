@@ -109,6 +109,39 @@ fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
     }
 })
 
+const T_MINUTE = 60;
+function stergeBackupuriVechi() {
+    const caleBackupCss = path.join(obGlobal.folderBackup, "resurse/css");
+
+    if (!fs.existsSync(caleBackupCss)) return;
+
+    const fisiere = fs.readdirSync(caleBackupCss);
+    const acum = Date.now();
+
+    for (const fisier of fisiere) {
+        const match = fisier.match(/_(\d+)\.css$/);
+        if (match) {
+            const timestamp = parseInt(match[1]);
+            const diferentaMinute = (acum - timestamp) / (1000 * 60);
+            if (diferentaMinute > T_MINUTE) {
+                const caleComplet = path.join(caleBackupCss, fisier);
+                try {
+                    fs.unlinkSync(caleComplet);
+                    console.log(`Șters: ${fisier}`);
+                } catch (err) {
+                    console.error(`Eroare la ștergerea fișierului ${fisier}:`, err);
+                }
+            }
+        }
+        else {
+            console.log(`Nimic de sters`);
+        }
+    }
+}
+stergeBackupuriVechi();
+// Apelează funcția la fiecare 30 minute
+setInterval(stergeBackupuriVechi, 30 * 60 * 1000);
+
 function initErori(){
     let continut = fs.readFileSync(path.join(__dirname,"resurse/json/erori.json")).toString("utf-8");
     obGlobal.obErori=JSON.parse(continut)
