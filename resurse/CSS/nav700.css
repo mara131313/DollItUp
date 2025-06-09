@@ -60,12 +60,6 @@ ul.meniu li ul {
   box-sizing: border-box;
   list-style: none;
 }
-ul.meniu li input[type=checkbox]:checked + label + ul {
-  display: block;
-}
-ul.meniu li input[type=checkbox].toggle-submeniu {
-  display: none;
-}
 ul.meniu > li {
   width: var(--latime-buton);
 }

@@ -156,7 +156,7 @@ window.onload = function(){
             prod.style.display = "none";
 
             let nume = prod.getElementsByClassName("val-nume")[0].innerHTML.trim().toLowerCase();
-            let cond1 = inpNume === "" || nume.startsWith(inpNume);
+            let cond1 = inpNume === "" || normalize(nume).startsWith(normalize(inpNume));
 
             let dimensiune = parseInt(prod.getElementsByClassName("val-dimensiune")[0].innerHTML.trim())
             let cond2 = (inpDimensiune == null || inpDimensiune == "toate" || (minDimensiune <= dimensiune && dimensiune <= maxDimensiune));
@@ -171,7 +171,7 @@ window.onload = function(){
             let cond5 = materialeSelectate.length == 0 || materialeSelectate.some(mat => material.includes(mat));            
             
             let stil = prod.getElementsByClassName("val-stil")[0].innerHTML.trim().toLowerCase();
-            let cond6 = inpStil === "" || inpStil === stil;
+            let cond6 = inpStil === "" || normalize(inpStil) === normalize(stil);
             
             let vegan = prod.getElementsByClassName("val-vegan")[0].innerHTML.trim().toLowerCase();
             let cond7 = !document.getElementById("vegan-da").checked && !document.getElementById("vegan-nu").checked;
@@ -179,7 +179,7 @@ window.onload = function(){
             else if (vegan === "nu" && document.getElementById("vegan-nu").checked) cond7 = true;
        
             let descriere = prod.getElementsByClassName("val-descriere")[0].textContent.trim().toLowerCase();
-            let cond8 = inpDescriere === "" || descriere.includes(inpDescriere);
+            let cond8 = inpDescriere === "" || normalize(descriere).includes(normalize(inpDescriere));
 
             if(cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8) {
                 prod.style.display = "block";
@@ -221,6 +221,13 @@ window.onload = function(){
             textarea.classList.add("is-valid");
         }
     }); 
+
+
+    //BONUS7
+    function normalize(str) {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
 
     // SORTARE    
 

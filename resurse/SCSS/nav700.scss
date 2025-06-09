@@ -62,12 +62,6 @@ ul.meniu {
             list-style: none;
             //z-index: -1;
         }
-        input[type="checkbox"]:checked + label + ul {
-            display: block;
-        }
-        input[type="checkbox"].toggle-submeniu{
-            display: none;
-        }
     }
     > li {
         width: var(--latime-buton);
