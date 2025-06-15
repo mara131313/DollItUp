@@ -148,6 +148,9 @@
                             <figure>
                                 <a href="/produs/<%-prod.id %>" ><img src="/resurse/imagini/produse/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
                             </figure>
+                            <% if (prod.ieftin) { %>
+                                <div class="badge-ieftin">Cel mai ieftin din categorie!</div>
+                            <% } %>
                             <% let eReducere = oferta && oferta.categorie === prod.categorie; %>
                             <p class="pret">
                                 <strong>Pret</strong>:
@@ -160,7 +163,6 @@
                                     <span class="val-pret"><%= prod.pret %></span> lei
                                 <% } %>
                             </p>
-
                             <p class="dimensiune"><strong>Dimensiune</strong>: <span class="val-dimensiune"><%- prod.dimensiune%></span> cm</p>
                             <p class="stil"><strong>Stil</strong>:<span class="val-stil"><%- prod.stil%></span></p>
                             <p class="material"><span class="label"><strong>Material</strong>:</span>

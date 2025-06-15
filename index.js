@@ -307,7 +307,22 @@ app.get("/produse", function(req, res){
                 afisareEroare(res, 2);
             }
             else{
-                let ofertaActiva = null;
+                let produse = rez.rows;   //bonus 14
+                const ieftinePeCategorie = {};
+                produse.forEach(p => {
+                    if (!ieftinePeCategorie[p.categorie] || p.pret < ieftinePeCategorie[p.categorie].pret) {
+                        ieftinePeCategorie[p.categorie] = p;
+                    }
+                });
+
+                produse.forEach(p => {
+                    const celMaiIeftin = ieftinePeCategorie[p.categorie];
+                    if (celMaiIeftin && p.id === celMaiIeftin.id) {
+                        p.ieftin = true;
+                    }
+                });
+
+                let ofertaActiva = null; //bonus 12
                 try {
                     const jsonOferte = JSON.parse(fs.readFileSync(caleOferte));
                     const acum = new Date();

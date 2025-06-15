@@ -176,6 +176,28 @@ body {
   cursor: pointer;
 }
 
+.badge-ieftin {
+  background-color: #ffea00;
+  color: #000;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 5px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 234, 0, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 10px 10px rgba(255, 234, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 234, 0, 0);
+  }
+}
 @media (max-width: 600px) {
   .frss {
     flex-direction: row;
