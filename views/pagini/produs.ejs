@@ -28,7 +28,17 @@
                 <figure class="imag-produs">
                     <img  src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
                 </figure>
-                <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
+                <% let eReducere = oferta && oferta.categorie === prod.categorie; %>
+                    <p class="pret">Pret:
+                        <% if (eReducere) { %>
+                            <span class="pret-vechi" style="text-decoration: line-through;"><%= prod.pret %> lei</span>
+                            <span class="pret-redus val-pret">
+                                <%= (prod.pret * (1 - oferta.reducere / 100)).toFixed(2) %>
+                            </span> lei (-<%= oferta.reducere %>%)
+                        <% } else { %>
+                            <span class="val-pret"><%= prod.pret %></span> lei
+                        <% } %>
+                    </p>
                 <p>Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
                 <p>Material:
                     <span class="material">
@@ -45,7 +55,7 @@
                 </p>
                 <p>Dimensiune: <span class="dimensiune"><%- locals.prod.dimensiune %> </span>cm.</p>
                 <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
-                <p>Confecționarea este vegană: <span class="vegan">><%= prod.vegan ? "Da" : "Nu" %></span></p>
+                <p>Confecționarea este vegană: <span class="vegan"><%= prod.vegan ? "Da" : "Nu" %></span></p>
                 <p>Stil: <span class="stil"><%- locals.prod.stil %> </span></p>
                 <p>Tipul de produs: <span class="tip_produs"><%- locals.prod.tip_produs %> </span></p>
                 <p>Data adăugării:<span class="data_adaugare"><time datetime="<%= prod.data_adaugare %>"><%= dataFormatata %></time></span></p>    

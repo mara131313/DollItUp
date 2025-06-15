@@ -1,0 +1,4 @@
+{
+  "watch": ["resurse/SCSS", "index.js", "views/CSS", "resurse/JS", "backup/"],
+  "ignore": ["resurse/JSON/oferte.json"]
+}

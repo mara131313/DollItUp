@@ -1,0 +1,64 @@
+{
+  "oferte": [
+    {
+      "categorie": "varsta0-2",
+      "data-incepere": "2025-06-15T09:15:38.960Z",
+      "data-finalizare": "2025-06-15T09:17:38.960Z",
+      "reducere": 20
+    },
+    {
+      "categorie": "varsta10-14",
+      "data-incepere": "2025-06-15T09:15:20.869Z",
+      "data-finalizare": "2025-06-15T09:17:20.869Z",
+      "reducere": 45
+    },
+    {
+      "categorie": "varsta0-2",
+      "data-incepere": "2025-06-15T09:14:36.885Z",
+      "data-finalizare": "2025-06-15T09:16:36.885Z",
+      "reducere": 15
+    },
+    {
+      "categorie": "haine",
+      "data-incepere": "2025-06-15T09:12:51.958Z",
+      "data-finalizare": "2025-06-15T09:14:51.958Z",
+      "reducere": 45
+    },
+    {
+      "categorie": "colectie",
+      "data-incepere": "2025-06-15T09:10:51.945Z",
+      "data-finalizare": "2025-06-15T09:12:51.945Z",
+      "reducere": 45
+    },
+    {
+      "categorie": "varsta10-14",
+      "data-incepere": "2025-06-15T09:08:51.932Z",
+      "data-finalizare": "2025-06-15T09:10:51.932Z",
+      "reducere": 15
+    },
+    {
+      "categorie": "incaltaminte",
+      "data-incepere": "2025-06-15T09:06:51.930Z",
+      "data-finalizare": "2025-06-15T09:08:51.930Z",
+      "reducere": 15
+    },
+    {
+      "categorie": "varsta6-10",
+      "data-incepere": "2025-06-15T09:04:51.918Z",
+      "data-finalizare": "2025-06-15T09:06:51.918Z",
+      "reducere": 40
+    },
+    {
+      "categorie": "varsta3-5",
+      "data-incepere": "2025-06-15T09:02:52.416Z",
+      "data-finalizare": "2025-06-15T09:04:52.416Z",
+      "reducere": 20
+    },
+    {
+      "categorie": "varsta6-10",
+      "data-incepere": "2025-06-15T09:01:02.825Z",
+      "data-finalizare": "2025-06-15T09:03:02.825Z",
+      "reducere": 45
+    }
+  ]
+}

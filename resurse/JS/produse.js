@@ -334,18 +334,21 @@ window.onload = function(){
             for (let prod of produse) {
                 prod.style.display = "block";
             }
+
+            let selectate = document.querySelectorAll(".select-cos:checked");
+            selectate.forEach(cb => cb.checked = false);
     
             document.getElementById("val-min").textContent = minPret.value;
             document.getElementById("val-max").textContent = maxPret.value;
 
             actualizeazaNumarProduse();
             aplicaPaginareLa(Array.from(document.getElementsByClassName("produs")));
+            document.getElementById("mesaj-fara-produse").style.display = "none";
         }
     }
 
     const K = 6;  // BONUS 5
     const pagContainer = document.getElementById("paginare");
-    const containerProduse = document.querySelector(".grid-produse");
 
     function afiseazaPagina(pagina, produse) {
         produse.forEach((prod, i) => {

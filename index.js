@@ -23,6 +23,7 @@ client.query("select * from unnest(enum_range(null::categ_papusi))", function(er
     console.log(err)    
    // console.log(rezultat)
 })
+module.exports = { client };
 
 app= express();
 
@@ -269,10 +270,6 @@ app.get("/index/b", function(req, res){
     res.render("pagini/sfaturi");
 })
 
-app.get("/index/b", function(req, res){
-    res.render("pagini/produse");
-})
-
 app.get("/cerere", function(req, res){
     res.send("<p style='color:magenta;'> Bunaa ZIUA!</p>")
 })
@@ -296,29 +293,40 @@ app.get("/abc", function(req, res, next){
     console.log("---------")
 })
 
+//BONUS12
+require("./resurse/JS/oferta");
+const caleOferte = path.join(__dirname, "resurse/JSON/oferte.json");
+
 app.get("/produse", function(req, res){
-    //console.log(req.query)
-    var conditieQuery="";
-
-    queryOptiuni="select * from unnest(enum_range(null::categ_papusi))"
+    queryOptiuni = "select * from unnest(enum_range(null::categ_papusi))"
     client.query(queryOptiuni, function(err, rezOptiuni){
-        //console.log(rezOptiuni)
-
-        queryProduse="select * from papusi"
+        queryProduse = "select * from papusi"
         client.query(queryProduse, function(err, rez){
             if (err){
                 console.log(err);
                 afisareEroare(res, 2);
             }
             else{
-                res.render("pagini/produse", {produse: rez.rows, optiuni:rezOptiuni.rows})
+                let ofertaActiva = null;
+                try {
+                    const jsonOferte = JSON.parse(fs.readFileSync(caleOferte));
+                    const acum = new Date();
+                    ofertaActiva = jsonOferte.oferte.find(of =>
+                        new Date(of["data-incepere"]) <= acum &&
+                        new Date(of["data-finalizare"]) >= acum
+                    );
+                } catch (e) {
+                    console.error("Eroare la citirea ofertelor:", e);
+                }
+
+                res.render("pagini/produse", {produse: rez.rows, optiuni: rezOptiuni.rows, oferta: ofertaActiva})
             }
         })
     });
-})
+});
 
 app.get("/produs/:id", function(req, res) {
-    const idProdus= req.params.id;
+    const idProdus = req.params.id;
     const query = `select * from papusi where id = $1`;
     client.query(query, [idProdus], function(err, rez) {
         if(err || rez.rows.length === 0) {
@@ -326,7 +334,19 @@ app.get("/produs/:id", function(req, res) {
             afisareEroare(res, 2);
         }
         else {
-            res.render("pagini/produs", { prod: rez.rows[0]})
+            let ofertaActiva = null;
+            try {
+                const jsonOferte = JSON.parse(fs.readFileSync(caleOferte));
+                const acum = new Date();
+                ofertaActiva = jsonOferte.oferte.find(of =>
+                    new Date(of["data-incepere"]) <= acum &&
+                    new Date(of["data-finalizare"]) >= acum
+                );
+            } catch (e) {
+                console.error("Eroare la citirea ofertelor:", e);
+            }
+
+            res.render("pagini/produs", { prod: rez.rows[0], oferta: ofertaActiva })
         }
     })
 })

@@ -119,6 +119,20 @@
 
                 <div id="paginare" class="d-flex justify-content-center flex-wrap gap-2 mb-4"></div>
 
+                <% if (oferta) { %>
+                    <section id="sectiune-oferta" class="alert alert-warning text-center mb-4">
+                        <h2> Ofertă activă: <%= oferta.reducere %>% reducere!</h2>
+                        <p>Categoria: <strong><%= oferta.categorie %></strong></p>
+                        <p>Valabilă între 
+                            <%= new Date(oferta["data-incepere"]).toLocaleString("ro-RO") %> și 
+                            <span id="data-finalizare" data-finalizare="<%= new Date(oferta['data-finalizare']).getTime() %>">
+                                <%= new Date(oferta["data-finalizare"]).toLocaleString("ro-RO") %>
+                            </span>
+                        </p>
+                        <p><strong>Timp rămas:</strong> <span id="timer">--:--:--</span></p>
+                    </section>
+                <% } %>
+
                 <div class="grid-produse">
                     <% for( let prod of locals.produse) {
                         const idArticol = "artc-" + prod.id;
@@ -134,7 +148,19 @@
                             <figure>
                                 <a href="/produs/<%-prod.id %>" ><img src="/resurse/imagini/produse/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
                             </figure>
-                            <p class="pret"><strong>Pret</strong>: <span class="val-pret"><%- prod.pret%></span> lei</p>
+                            <% let eReducere = oferta && oferta.categorie === prod.categorie; %>
+                            <p class="pret">
+                                <strong>Pret</strong>:
+                                <% if (eReducere) { %>
+                                    <span class="pret-vechi"><%= prod.pret %> lei</span>
+                                    <span class="pret-redus val-pret">
+                                        <%= (prod.pret * (1 - oferta.reducere / 100)).toFixed(2) %>
+                                    </span> lei (-<%= oferta.reducere %>%)
+                                <% } else { %>
+                                    <span class="val-pret"><%= prod.pret %></span> lei
+                                <% } %>
+                            </p>
+
                             <p class="dimensiune"><strong>Dimensiune</strong>: <span class="val-dimensiune"><%- prod.dimensiune%></span> cm</p>
                             <p class="stil"><strong>Stil</strong>:<span class="val-stil"><%- prod.stil%></span></p>
                             <p class="material"><span class="label"><strong>Material</strong>:</span>
@@ -173,5 +199,7 @@
         <%- include("../fragmente/footer.ejs") %>
         <script type="text/javascript" src="../../resurse/js/produse.js"></script>
         <script type="text/javascript" src="../../resurse/js/modal.js"></script>
+        <script type="text/javascript" src="../../resurse/js/oferta.js"></script>
+        <script type="text/javascript" src="../../resurse/js/client.js"></script>
     </body>
 </html>

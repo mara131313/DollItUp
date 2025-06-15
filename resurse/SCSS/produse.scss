@@ -10,9 +10,6 @@ body {
 #produse {
     padding: 2rem;
     font-family: Arial, sans-serif;
-    .produs .dimensiune, .stil, .categorie, .data-adaugare, .vegan, .descriere{
-        display: none;
-    }
 }
 
 .grid-produse {
@@ -61,6 +58,14 @@ body {
         text-decoration: none;
         color: inherit;
     }    
+}
+
+.pret-vechi {
+    text-decoration: line-through;
+}
+.pret-redus {
+    color: red;
+    font-weight: bold;
 }
 
 .selecteaza-cos {
