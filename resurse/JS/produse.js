@@ -1,8 +1,12 @@
-window.onload = function(){
+//window.onload = function(){
+window.addEventListener("load", function (){
     let sliderMin = document.getElementById("inp-pret-min");
     let sliderMax = document.getElementById("inp-pret-max");
     let valMinAfisata = document.getElementById("val-min");
     let valMaxAfisata = document.getElementById("val-max");
+    let produsePastrate = new Set();
+    let produseSterseTemporar = new Set();
+    let produseStersePermanent = new Set(JSON.parse(sessionStorage.getItem("produseStersePermanent") || "[]"));
 
     // Preturi bonus1
     let preturi = Array.from(document.getElementsByClassName("val-pret"))
@@ -120,6 +124,136 @@ window.onload = function(){
         datalistStiluri.appendChild(opt);
     });
 
+        const K = 6;  // BONUS 5
+    const pagContainer = document.getElementById("paginare");
+
+    function afiseazaPagina(pagina, produse) {
+        produse.forEach((prod, i) => {
+            prod.style.display = (i >= (pagina - 1) * K && i < pagina * K) ? "block" : "none";
+        });
+
+        pagContainer.querySelectorAll("button").forEach(btn => btn.classList.remove("active"));
+        const btnAct = pagContainer.querySelector(`button[data-pagina='${pagina}']`);
+        if (btnAct) btnAct.classList.add("active");
+    }
+
+    function genereazaButoanePaginare(produse) {
+        const NRL = Math.ceil(produse.length / K);
+        pagContainer.innerHTML = "";
+        if (NRL <= 1) return;
+
+        for (let i = 1; i <= NRL; i++) {
+            const btn = document.createElement("button");
+            btn.textContent = i;
+            btn.classList.add("btn", "btn-outline-primary", "btn-sm");
+            btn.setAttribute("data-pagina", i);
+            btn.addEventListener("click", () => afiseazaPagina(i, produse));
+            pagContainer.appendChild(btn);
+        }
+    }
+
+    function aplicaPaginareLa(produse) {
+        produse.forEach(p => p.style.display = "block");
+        genereazaButoanePaginare(produse);
+        afiseazaPagina(1, produse);
+    }
+
+    aplicaPaginareLa(Array.from(document.getElementsByClassName("produs")));
+
+    // BONUS 4
+    function filtrare() {
+        if (!inpValidare()) return;
+
+        let vectRadio = document.getElementsByName("gr_rad");
+        let inpDimensiune = null;
+        let minDimensiune = null;
+        let maxDimensiune = null;
+
+        for (let rad of vectRadio) {
+            if (rad.checked) {
+                inpDimensiune = rad.value;
+                if (inpDimensiune !== "toate") {
+                    [minDimensiune, maxDimensiune] = inpDimensiune.split(":").map(Number);
+                }
+                break;
+            }
+        }
+
+        let pretMin = parseInt(document.getElementById("inp-pret-min").value);
+        let pretMax = parseInt(document.getElementById("inp-pret-max").value);
+        if (pretMin > pretMax) [pretMin, pretMax] = [pretMax, pretMin];
+        let inpCategorie = document.getElementById("inp-categorie").value.trim().toLowerCase();
+        let inpMaterial = document.getElementById("inp-material");
+        let inpStil = document.getElementById("inp-stil").value.trim().toLowerCase();
+        let materialeSelectate = Array.from(inpMaterial.selectedOptions).map(opt => opt.value).filter(val => val);
+        let inpDescriere = document.getElementById("inp-descriere").value.trim().toLowerCase();
+        let inpNume = document.getElementById("inp-nume").value.trim().toLowerCase();
+
+
+        let produse = document.getElementsByClassName("produs");
+
+        for (let prod of produse) {
+            prod.style.display = "none";
+
+            let nume = prod.getElementsByClassName("val-nume")[0].innerHTML.trim().toLowerCase();
+            let cond1 = inpNume === "" || normalize(nume).includes(normalize(inpNume));
+
+            let dimensiune = parseInt(prod.getElementsByClassName("val-dimensiune")[0].innerHTML.trim());
+            let cond2 = (inpDimensiune == null || inpDimensiune == "toate" || (minDimensiune <= dimensiune && dimensiune <= maxDimensiune));
+
+            let pret = parseFloat(prod.getElementsByClassName("val-pret")[0].innerHTML.trim());
+            let cond3 = (pretMin <= pret && pret <= pretMax);
+
+            let categorie = prod.getElementsByClassName("val-categorie")[0].innerHTML.trim().toLowerCase();
+            let cond4 = (inpCategorie == "toate" || inpCategorie == categorie);
+
+            let material = prod.getElementsByClassName("val-material")[0].innerHTML.trim().toLowerCase().split(",").map(s => s.trim());
+            let cond5 = materialeSelectate.length == 0 || materialeSelectate.some(mat => material.includes(mat));
+
+            let stil = prod.getElementsByClassName("val-stil")[0].innerHTML.trim().toLowerCase();
+            let cond6 = inpStil === "" || normalize(inpStil) === normalize(stil);
+
+            let vegan = prod.getElementsByClassName("val-vegan")[0].innerHTML.trim().toLowerCase();
+            let cond7 = !document.getElementById("vegan-da").checked && !document.getElementById("vegan-nu").checked;
+            if (vegan === "da" && document.getElementById("vegan-da").checked) cond7 = true;
+            else if (vegan === "nu" && document.getElementById("vegan-nu").checked) cond7 = true;
+
+            let descriere = prod.getElementsByClassName("val-descriere")[0].textContent.trim().toLowerCase();
+            let cond8 = inpDescriere === "" || normalize(descriere).includes(normalize(inpDescriere));
+
+            if(cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8) {
+                prod.style.display = "block";
+            }
+        }
+
+        actualizeazaNumarProduse();
+
+        const produseViz = Array.from(produse).filter(prod => prod.style.display === "block");
+
+        if (produseViz.length === 0) { //bonus3
+            document.getElementById("mesaj-fara-produse").style.display = "block";
+            pagContainer.innerHTML = "";
+        } else {
+            document.getElementById("mesaj-fara-produse").style.display = "none";
+            aplicaPaginareLa(produseViz);
+        }
+    }
+
+    filtrare();
+
+    document.getElementById("inp-nume").addEventListener("input", filtrare);
+    document.getElementById("inp-pret-min").addEventListener("input", filtrare);
+    document.getElementById("inp-pret-max").addEventListener("input", filtrare);
+    document.getElementById("inp-categorie").addEventListener("change", filtrare);
+    document.getElementById("inp-material").addEventListener("change", filtrare);
+    document.getElementById("inp-stil").addEventListener("input", filtrare);
+    document.getElementById("inp-descriere").addEventListener("input", filtrare);
+    document.getElementById("vegan-da").addEventListener("change", filtrare);
+    document.getElementById("vegan-nu").addEventListener("change", filtrare);
+    let radDim = document.querySelectorAll("input[name='gr_rad']");
+    radDim.forEach(r => r.addEventListener("change", filtrare));
+
+    /*
     // FILTRARE
 
     document.getElementById("filtrare").onclick=function(){
@@ -156,7 +290,7 @@ window.onload = function(){
             prod.style.display = "none";
 
             let nume = prod.getElementsByClassName("val-nume")[0].innerHTML.trim().toLowerCase();
-            let cond1 = inpNume === "" || normalize(nume).startsWith(normalize(inpNume));
+            let cond1 = inpNume === "" || normalize(nume).includes(normalize(inpNume));
 
             let dimensiune = parseInt(prod.getElementsByClassName("val-dimensiune")[0].innerHTML.trim())
             let cond2 = (inpDimensiune == null || inpDimensiune == "toate" || (minDimensiune <= dimensiune && dimensiune <= maxDimensiune));
@@ -198,7 +332,7 @@ window.onload = function(){
             aplicaPaginareLa(produseViz);
         }
 
-    }    
+    }    */
 
     function inpValidare() {
         const textInput = document.querySelector("input[type='text'], textarea");
@@ -347,42 +481,6 @@ window.onload = function(){
         }
     }
 
-    const K = 6;  // BONUS 5
-    const pagContainer = document.getElementById("paginare");
-
-    function afiseazaPagina(pagina, produse) {
-        produse.forEach((prod, i) => {
-            prod.style.display = (i >= (pagina - 1) * K && i < pagina * K) ? "block" : "none";
-        });
-
-        pagContainer.querySelectorAll("button").forEach(btn => btn.classList.remove("active"));
-        const btnAct = pagContainer.querySelector(`button[data-pagina='${pagina}']`);
-        if (btnAct) btnAct.classList.add("active");
-    }
-
-    function genereazaButoanePaginare(produse) {
-        const NRL = Math.ceil(produse.length / K);
-        pagContainer.innerHTML = "";
-        if (NRL <= 1) return;
-
-        for (let i = 1; i <= NRL; i++) {
-            const btn = document.createElement("button");
-            btn.textContent = i;
-            btn.classList.add("btn", "btn-outline-primary", "btn-sm");
-            btn.setAttribute("data-pagina", i);
-            btn.addEventListener("click", () => afiseazaPagina(i, produse));
-            pagContainer.appendChild(btn);
-        }
-    }
-
-    function aplicaPaginareLa(produse) {
-        produse.forEach(p => p.style.display = "block");
-        genereazaButoanePaginare(produse);
-        afiseazaPagina(1, produse);
-    }
-
-    aplicaPaginareLa(Array.from(document.getElementsByClassName("produs")));
-
     //BONUS 15
     function actualizeazaNumarProduse() {
         const toateProdusele = document.querySelectorAll(".grid-produse article.produs");
@@ -400,4 +498,4 @@ window.onload = function(){
     window.addEventListener("load", () => {
         actualizeazaNumarProduse();
     });
-}
+})

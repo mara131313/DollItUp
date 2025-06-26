@@ -146,7 +146,7 @@
                         <h3 class="nume">Nume: <a href="/produs/<%-prod.id %>" ><span class="val-nume"><%- prod.nume%></span></a></h3>
                         <div class="col1">
                             <figure>
-                                <a href="/produs/<%-prod.id %>" ><img src="/resurse/imagini/produse/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
+                                <a href="/produs/<%-prod.id %>"> <img src="<%- prod.imagine %>" style="width:50%; height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
                             </figure>
                             <% if (prod.ieftin) { %>
                                 <div class="badge-ieftin">Cel mai ieftin din categorie!</div>

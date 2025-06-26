@@ -1,11 +1,3 @@
-/*
-html {
-    --c1: #FFD9E1;
-    --culoare-vizitat: #B366E9;
-    --culoare-hover: #b3478f;
-}
-*/
-
 a:visited {
     color: var(--culoare-vizitat);
 }

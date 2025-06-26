@@ -176,6 +176,30 @@ body {
   cursor: pointer;
 }
 
+.btn-pastreaza.activ {
+  background-color: #4CAF50;
+  color: white;
+  border: 2px solid #4CAF50;
+}
+
+.produs.pastrat {
+  outline: 3px solid #4CAF50;
+}
+
+.btn-sterge-temp.apasat,
+.btn-sterge-perm.apasat {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.actiuni-produs button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-right: 5px;
+}
+
 .badge-ieftin {
   background-color: #ffea00;
   color: #000;

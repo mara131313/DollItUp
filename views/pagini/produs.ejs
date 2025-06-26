@@ -26,7 +26,7 @@
             <article id="art-produs">
                 <h3><span class="nume"><%- locals.prod.nume %></span></h3>
                 <figure class="imag-produs">
-                    <img  src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
+                    <img  src=<%- locals.prod.imagine %> alt="[imagine <%- locals.prod.nume %>]" />
                 </figure>
                 <% let eReducere = oferta && oferta.categorie === prod.categorie; %>
                     <p class="pret">Pret:

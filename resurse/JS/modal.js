@@ -1,15 +1,19 @@
-document.querySelectorAll("article.produs").forEach(articol => {
-  articol.addEventListener("click", function () {
-    const nume = this.querySelector(".val-nume").textContent.trim();
-    const pret = this.querySelector(".val-pret").textContent.trim();
-    const dimensiune = this.querySelector(".val-dimensiune").textContent.trim();
-    const stil = this.querySelector(".val-stil").textContent.trim();
-    const material = this.querySelector(".val-material").textContent.trim();
-    const data = this.querySelector(".val-data_adaugare").textContent.trim();
-    const vegan = this.querySelector(".val-vegan").textContent.trim();
-    const categorie = this.querySelector(".val-categorie").textContent.trim();
-    const descriere = this.querySelector(".val-descriere").textContent.trim();
-    const imagine = this.querySelector("img").src;
+document.querySelectorAll("article.produs .col1").forEach(col1 => {
+  col1.addEventListener("click", function (event) {
+    event.stopPropagation(); // oprește propagarea clickului la articole, în caz că sunt alte evenimente
+
+    const articol = this.closest("article.produs");
+
+    const nume = articol.querySelector(".val-nume").textContent.trim();
+    const pret = articol.querySelector(".val-pret").textContent.trim();
+    const dimensiune = articol.querySelector(".val-dimensiune").textContent.trim();
+    const stil = articol.querySelector(".val-stil").textContent.trim();
+    const material = articol.querySelector(".val-material").textContent.trim();
+    const data = articol.querySelector(".val-data_adaugare").textContent.trim();
+    const vegan = articol.querySelector(".val-vegan").textContent.trim();
+    const categorie = articol.querySelector(".val-categorie").textContent.trim();
+    const descriere = articol.querySelector(".val-descriere").textContent.trim();
+    const imagine = articol.querySelector("img").src;
 
     document.getElementById("modal-body").innerHTML = `
       <h2>${nume}</h2>
@@ -27,6 +31,7 @@ document.querySelectorAll("article.produs").forEach(articol => {
     document.getElementById("modal").style.display = "block";
   });
 });
+
 
 document.querySelector(".close").addEventListener("click", function () {
   document.getElementById("modal").style.display = "none";

@@ -43,8 +43,12 @@ iframe, .fa-question {
     display: none !important;
 }
 
-figure, nav, .container-iframe, #link-top {
+figure, nav, .container-iframe, #link-top, video {
     display: none;
+}
+
+body {
+    background-image: none !important;
 }
 
 #watermark {
